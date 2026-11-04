@@ -390,10 +390,10 @@ const pt: Content = {
   languages: ["Português: nativo", "Inglês: intermediário (leitura técnica fluente)"],
   cv: {
     title: "Currículo | Caio Bento",
-    headline: "Full Stack Developer & Automation | React, Next.js, Node.js, Python, TypeScript, n8n | Integrações com IA",
+    headline: "Desenvolvedor Full Stack | React, Next.js, TypeScript, Node.js, PostgreSQL",
     summaryTitle: "Resumo de qualificações",
     summary:
-      "Desenvolvedor Full Stack e Automação com experiência em aplicações web modernas, integrações entre sistemas e soluções baseadas em inteligência artificial. Na Nexly Group, foi responsável por todas as interfaces frontend da empresa, além de projetar e implementar automações críticas com n8n integradas a bancos de dados, APIs REST e agentes de IA. Idealizou e desenvolveu a primeira IA de vendas e suporte da Silva Nutrition, operando via WhatsApp com integrações WooCommerce, rastreamento de pedidos e atendimento automatizado. Experiência com migração de dados em larga escala, construção de dashboards e alertas de monitoramento para integridade de sistemas em produção.",
+      "Desenvolvedor Full Stack com experiência em aplicações web de ponta a ponta com React, Next.js, TypeScript e Node.js, sempre em sistemas em produção. Na Adapt Edtech, desenvolveu interfaces e funcionalidades do Adapt Liviu e do Liviu Hub, plataformas de educação usadas por instituições de ensino e áreas de T&D corporativo. Na Nexly Group, foi responsável por todas as interfaces frontend da empresa em produtos B2B, além de integrações via APIs REST e webhooks, como a primeira IA de vendas e suporte da Silva Nutrition e a migração de mais de 100 mil registros para o Supabase. Experiência com integração de frontend a APIs, bancos relacionais (PostgreSQL e Supabase), dashboards e versionamento colaborativo com Git.",
     skillsTitle: "Competências técnicas",
     experienceTitle: "Experiência profissional",
     educationTitle: "Formação acadêmica",
@@ -666,10 +666,10 @@ const en: Content = {
   languages: ["Portuguese: native", "English: intermediate (fluent technical reading)"],
   cv: {
     title: "Résumé | Caio Bento",
-    headline: "Full Stack Developer & Automation | React, Next.js, Node.js, Python, TypeScript, n8n | AI Integrations",
+    headline: "Full Stack Developer | React, Next.js, TypeScript, Node.js, PostgreSQL",
     summaryTitle: "Summary",
     summary:
-      "Full Stack and Automation developer experienced in modern web applications, system integrations and AI-driven solutions. At Nexly Group, owned every frontend interface in the company while designing and shipping critical n8n automations connected to databases, REST APIs and AI agents. Designed and built Silva Nutrition's first sales and support AI, running on WhatsApp with WooCommerce integrations, order tracking and automated customer service. Experienced in large-scale data migration, dashboards and monitoring alerts that protect production systems.",
+      "Full Stack Developer experienced in building web applications end to end with React, Next.js, TypeScript and Node.js, always on systems running in production. At Adapt Edtech, built interfaces and features for Adapt Liviu and Liviu Hub, education platforms used by schools and corporate L&D teams. At Nexly Group, owned every frontend interface in the company's B2B products and built integrations through REST APIs and webhooks, such as Silva Nutrition's first sales and support AI and the migration of 100k+ records to Supabase. Experienced in wiring frontends to APIs, relational databases (PostgreSQL and Supabase), dashboards and collaborative Git workflows.",
     skillsTitle: "Technical skills",
     experienceTitle: "Professional experience",
     educationTitle: "Education",

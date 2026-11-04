@@ -20,9 +20,18 @@ export async function generateMetadata({ params }: LayoutProps<"/[lang]">): Prom
   if (!hasLocale(lang)) return {};
   const t = getContent(lang);
   return {
+    metadataBase: new URL("https://caiobento.vercel.app"),
     title: t.meta.title,
     description: t.meta.description,
-    openGraph: { title: t.meta.title, description: t.meta.description, type: "website" },
+    openGraph: {
+      title: t.meta.title,
+      description: t.meta.description,
+      type: "website",
+      url: `/${lang}`,
+      siteName: "Caio Bento",
+      locale: lang === "pt" ? "pt_BR" : "en_US",
+    },
+    twitter: { card: "summary_large_image", title: t.meta.title, description: t.meta.description },
     alternates: { languages: { "pt-BR": "/pt", en: "/en" } },
   };
 }

@@ -1,0 +1,1 @@
+Caio Bento, desenvolvedor full stack: React, Next.js, TypeScript e Node.js

@@ -16,6 +16,8 @@ export function LangSwitch({ lang, label, className = "" }: { lang: Locale; labe
     <Link
       href={href}
       hrefLang={other}
+      // Trocar o idioma mantém a pessoa no mesmo ponto da página (sem isso o Next rolava até o fim).
+      scroll={false}
       className={`rounded-full border border-line px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-muted transition hover:border-accent hover:text-accent ${className}`}
     >
       {label}
@@ -94,6 +96,10 @@ export function Nav({ lang, links, social, switchLabel, cvLabel, openLabel, clos
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
+    // Se a página trocar (ex.: mudar de idioma com o menu aberto), libera a rolagem.
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [open]);
 
   const close = () => setOpen(false);

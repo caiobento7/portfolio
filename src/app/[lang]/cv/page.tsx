@@ -16,7 +16,7 @@ export default async function CvPage({ params }: PageProps<"/[lang]/cv">) {
   const t = getContent(lang);
 
   return (
-    <div className="px-4 py-6 sm:py-10">
+    <div className="print-wrap px-4 py-6 sm:py-10">
       <div className="no-print mx-auto mb-6 flex max-w-[52rem] flex-wrap items-center justify-between gap-3">
         <Link href={`/${lang}`} className="text-sm text-muted transition hover:text-fg">
           ← {t.cv.back}

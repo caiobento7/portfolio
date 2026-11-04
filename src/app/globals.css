@@ -179,10 +179,12 @@ body {
   }
 }
 
-/* Currículo impresso: só a folha, sem cabeçalho nem botões, sempre claro. */
+/* Currículo impresso: só a folha, em preto e branco.
+   A margem da página é zero para o navegador não ter onde desenhar data, título e URL
+   (cabeçalho e rodapé automáticos); o respiro fica no padding da folha, repetido em cada página. */
 @page {
   size: A4;
-  margin: 14mm 14mm;
+  margin: 0;
 }
 
 @media print {
@@ -191,31 +193,44 @@ body {
     --bg: #ffffff;
     --surface: #ffffff;
     --card: #ffffff;
-    --fg: #111111;
-    --muted: #333333;
+    --fg: #000000;
+    --muted: #2b2b2b;
     --subtle: #555555;
-    --line: #d4d4d4;
-    --accent: #4a3bcc;
+    --line: #cfcfcf;
+    --accent: #000000;
+    --accent-strong: #000000;
     color-scheme: light;
   }
   html {
     font-size: 12.5px;
   }
+  body {
+    background: #fff !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
   .no-print {
     display: none !important;
+  }
+  .print-wrap {
+    padding: 0 !important;
   }
   .print-sheet {
     box-shadow: none !important;
     border: 0 !important;
-    padding: 0 !important;
+    border-radius: 0 !important;
     margin: 0 !important;
     max-width: none !important;
     background: #fff !important;
+    padding: 14mm 15mm !important;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
   }
   .avoid-break {
     break-inside: avoid;
   }
   a {
+    color: inherit !important;
     text-decoration: none !important;
   }
 }

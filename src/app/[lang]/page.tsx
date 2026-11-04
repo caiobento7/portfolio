@@ -141,8 +141,23 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
               <aside
                 data-reveal
                 style={{ ["--delay" as string]: "120ms" }}
-                className="rounded-[1.25rem] bg-surface p-7 shadow-card"
+                className="overflow-hidden rounded-[1.25rem] bg-surface shadow-card"
               >
+                <div className="relative aspect-[4/3.4] w-full">
+                  <Image
+                    src="/caio.png"
+                    alt={contact.name}
+                    fill
+                    sizes="(min-width: 1024px) 400px, 100vw"
+                    className="object-cover object-[50%_30%]"
+                  />
+                  <div aria-hidden className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-surface to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 px-7 pb-4">
+                    <p className="text-lg font-bold text-fg">{contact.name}</p>
+                    <p className="text-sm font-medium text-accent">{t.hero.role}</p>
+                  </div>
+                </div>
+                <div className="p-7 pt-5">
                 <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-subtle">{t.timelineTitle}</p>
                 <ol className="mt-6">
                   {t.timeline.map((e, i) => (
@@ -172,6 +187,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                 <p className="mt-7 flex items-center gap-2 border-t border-line pt-5 text-sm text-muted">
                   <PinIcon className="size-4 text-accent" /> {t.hero.location}
                 </p>
+                </div>
               </aside>
             </div>
 

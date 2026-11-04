@@ -23,11 +23,15 @@ export function LangSwitch({ lang, label, className = "" }: { lang: Locale; labe
   );
 }
 
-export function PrintButton({ label }: { label: string }) {
+/** Baixa o PDF pronto (gerado a partir da página /cv), sem passar pela janela de impressão. */
+export function DownloadCvButton({ href, fileName, label }: { href: string; fileName: string; label: string }) {
   return (
-    <button type="button" onClick={() => window.print()} className="btn-outline !px-5 !py-2.5">
+    <a href={href} download={fileName} className="btn-outline !px-5 !py-2.5">
+      <svg aria-hidden viewBox="0 0 24 24" className="size-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 3v12m0 0-4-4m4 4 4-4M5 21h14" />
+      </svg>
       {label}
-    </button>
+    </a>
   );
 }
 

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { contact, getContent, hasLocale } from "@/content";
-import { LangSwitch, PrintButton } from "@/components/client";
+import { DownloadCvButton, LangSwitch } from "@/components/client";
 
 export async function generateMetadata({ params }: PageProps<"/[lang]/cv">): Promise<Metadata> {
   const { lang } = await params;
@@ -23,7 +23,11 @@ export default async function CvPage({ params }: PageProps<"/[lang]/cv">) {
         </Link>
         <div className="flex items-center gap-2">
           <LangSwitch lang={lang} label={t.switchTo} />
-          <PrintButton label={t.cv.print} />
+          <DownloadCvButton
+            href={`/caio-bento-cv-${lang}.pdf`}
+            fileName={lang === "pt" ? "Caio Bento - Currículo.pdf" : "Caio Bento - Resume.pdf"}
+            label={t.cv.print}
+          />
         </div>
       </div>
 

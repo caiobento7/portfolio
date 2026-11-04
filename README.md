@@ -3,7 +3,7 @@
 Portfólio e currículo online em português e inglês, feito com Next.js 16 e Tailwind CSS 4.
 
 - `/pt` e `/en`: portfólio (sobre, projetos, experiência, stack e contato)
-- `/pt/cv` e `/en/cv`: currículo completo, com botão **Salvar em PDF** que imprime só a folha em A4
+- `/pt/cv` e `/en/cv`: currículo completo, com botão **Baixar PDF** que entrega os arquivos de `public/` (preto e branco, A4)
 - Quem abre `/` vai para o idioma do navegador (`src/proxy.ts`)
 
 ## Editar o conteúdo
@@ -21,7 +21,7 @@ npm run dev
 
 Abre em http://localhost:3000.
 
-## Gerar os PDFs do currículo
+## Gerar os PDFs do currículo (refaça sempre que mudar o conteúdo)
 
 Com o site rodando (`npm run build && npm start`), gere os arquivos pelo Chrome:
 

@@ -10,7 +10,7 @@ export const hasLocale = (value: string): value is Locale =>
 
 export const contact = {
   name: "Caio Bento",
-  email: "caioobentoo7@gmail.com",
+  email: "caiobentoodev@gmail.com",
   phone: "+55 21 98985-4536",
   phoneHref: "tel:+5521989854536",
   whatsapp: "https://wa.me/5521989854536",

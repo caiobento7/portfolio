@@ -18,6 +18,8 @@ export const contact = {
   linkedinLabel: "linkedin.com/in/caiobentoo",
   github: "https://github.com/caiobento7",
   githubLabel: "github.com/caiobento7",
+  site: "https://caiobento.vercel.app",
+  siteLabel: "caiobento.vercel.app",
 };
 
 export type Project = {
@@ -33,6 +35,8 @@ export type Project = {
   status?: "building";
   image?: string;
   link?: { href: string; label: string };
+  /** Repositório público do projeto. */
+  repo?: { href: string; label: string };
 };
 
 export type Job = {
@@ -246,6 +250,7 @@ const pt: Content = {
       impact: "No ar na Vercel, com frontend estático e API serverless no mesmo domínio.",
       stack: ["React 19", "Vite", "Node.js", "Express 5", "Supabase", "PostgreSQL", "jsPDF"],
       link: { href: "https://plataforma-cursos-omega.vercel.app", label: "Ver site no ar" },
+      repo: { href: "https://github.com/caiobento7/plataforma_cursos", label: "Ver código" },
     },
     {
       slug: "suporte",
@@ -521,6 +526,7 @@ const en: Content = {
       impact: "Live on Vercel, with a static frontend and a serverless API on the same domain.",
       stack: ["React 19", "Vite", "Node.js", "Express 5", "Supabase", "PostgreSQL", "jsPDF"],
       link: { href: "https://plataforma-cursos-omega.vercel.app", label: "Visit live site" },
+      repo: { href: "https://github.com/caiobento7/plataforma_cursos", label: "View code" },
     },
     {
       slug: "suporte",

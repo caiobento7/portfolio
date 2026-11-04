@@ -39,6 +39,8 @@ export default async function CvPage({ params }: PageProps<"/[lang]/cv">) {
             <a href={contact.linkedin} className="hover:text-fg">{contact.linkedinLabel}</a>
             <Sep />
             <a href={contact.github} className="hover:text-fg">{contact.githubLabel}</a>
+            <Sep />
+            <a href={contact.site} className="font-medium text-accent hover:underline">{contact.siteLabel}</a>
           </p>
         </header>
 
@@ -103,6 +105,14 @@ export default async function CvPage({ params }: PageProps<"/[lang]/cv">) {
                       {" · "}
                       <a href={p.link.href} className="not-italic text-accent hover:underline">
                         {p.link.href.replace("https://", "")}
+                      </a>
+                    </>
+                  )}
+                  {p.repo && (
+                    <>
+                      {" · "}
+                      <a href={p.repo.href} className="not-italic text-accent hover:underline">
+                        {p.repo.href.replace("https://", "")}
                       </a>
                     </>
                   )}

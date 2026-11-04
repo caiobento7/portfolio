@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { contact, getContent, hasLocale } from "@/content";
 import { HeroArt, PhoneArt, ProjectCover } from "@/components/art";
 import { BackToTop, Nav, Reveal, SocialLinks, ThemeToggle } from "@/components/client";
-import { DocIcon, EyeIcon, MailIcon, PhoneIcon, PinIcon, SkillIcon, WhatsappIcon } from "@/components/icons";
+import { DocIcon, EyeIcon, GithubIcon, MailIcon, PhoneIcon, PinIcon, SkillIcon, WhatsappIcon } from "@/components/icons";
 
 export default async function Home({ params }: PageProps<"/[lang]">) {
   const { lang } = await params;
@@ -252,18 +252,32 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                         <ProjectCover project={p} lang={lang} />
                       </div>
                     )}
-                    {p.link && (
-                      <div className="invisible absolute inset-0 flex items-center justify-center opacity-0 transition duration-300 group-hover:visible group-hover:opacity-100">
-                        <a
-                          href={p.link.href}
-                          target="_blank"
-                          rel="noreferrer"
-                          title={p.link.label}
-                          aria-label={p.link.label}
-                          className="grid size-14 place-items-center rounded-full bg-white text-black transition hover:bg-black hover:text-white"
-                        >
-                          <EyeIcon className="size-7" />
-                        </a>
+                    {(p.link || p.repo) && (
+                      <div className="invisible absolute inset-0 flex items-center justify-center gap-3 opacity-0 transition duration-300 group-hover:visible group-hover:opacity-100">
+                        {p.repo && (
+                          <a
+                            href={p.repo.href}
+                            target="_blank"
+                            rel="noreferrer"
+                            title={p.repo.label}
+                            aria-label={p.repo.label}
+                            className="grid size-14 place-items-center rounded-full bg-white text-black transition hover:bg-black hover:text-white"
+                          >
+                            <GithubIcon className="size-7" />
+                          </a>
+                        )}
+                        {p.link && (
+                          <a
+                            href={p.link.href}
+                            target="_blank"
+                            rel="noreferrer"
+                            title={p.link.label}
+                            aria-label={p.link.label}
+                            className="grid size-14 place-items-center rounded-full bg-white text-black transition hover:bg-black hover:text-white"
+                          >
+                            <EyeIcon className="size-7" />
+                          </a>
+                        )}
                       </div>
                     )}
                   </div>
@@ -287,10 +301,19 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                   )}
                   <p className="mt-auto text-sm text-subtle">{p.stack.join(" - ")}</p>
                   {p.status === "building" && <p className="text-xs italic text-subtle">{t.sections.soon}</p>}
-                  {p.link && (
-                    <a href={p.link.href} target="_blank" rel="noreferrer" className="text-sm font-bold text-accent hover:underline md:hidden">
-                      {p.link.label} →
-                    </a>
+                  {(p.link || p.repo) && (
+                    <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm font-bold">
+                      {p.link && (
+                        <a href={p.link.href} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 text-accent hover:underline">
+                          <EyeIcon className="size-4" /> {p.link.label}
+                        </a>
+                      )}
+                      {p.repo && (
+                        <a href={p.repo.href} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 text-accent hover:underline">
+                          <GithubIcon className="size-4" /> {p.repo.label}
+                        </a>
+                      )}
+                    </div>
                   )}
                 </article>
               ))}

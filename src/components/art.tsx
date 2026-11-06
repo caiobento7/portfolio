@@ -139,6 +139,7 @@ const mockText = {
     service: "Corte + barba · 45 min",
     days: [["Seg", "10"], ["Ter", "11"], ["Qua", "12"], ["Qui", "13"], ["Sex", "14"]],
     cta: "Pagar sinal com Pix · R$ 20",
+    paid: "Pix recebido",
     events: "player · eventos",
   },
   en: {
@@ -146,6 +147,7 @@ const mockText = {
     service: "Haircut + beard · 45 min",
     days: [["Mon", "10"], ["Tue", "11"], ["Wed", "12"], ["Thu", "13"], ["Fri", "14"]],
     cta: "Pay deposit with Pix · R$ 20",
+    paid: "Pix received",
     events: "player · events",
   },
 };
@@ -155,21 +157,30 @@ function BookingMockup({ lang }: { lang: Locale }) {
   const m = mockText[lang];
   const slots = ["09:00", "10:00", "11:00", "13:30", "14:00", "15:00", "16:30", "18:00"];
   const taken = new Set(["10:00", "15:00"]);
+  // Mesmas cores do Agenda de verdade (verde-azulado), para a capa parecer o sistema.
   return (
-    <div className="relative flex h-full w-full items-center justify-center overflow-hidden bg-gradient-to-br from-accent/35 to-[#0b0b0b] to-75%">
-      <div className="w-[82%] max-w-[300px] rounded-xl bg-white p-3 text-left shadow-2xl shadow-black/50">
+    <div className="relative flex h-full w-full items-center justify-center overflow-hidden bg-gradient-to-br from-[#115e59] via-[#0f766e] to-[#14b8a6]">
+      <div
+        aria-hidden
+        className="absolute inset-0 opacity-[0.12]"
+        style={{
+          backgroundImage: "linear-gradient(rgb(255 255 255) 1px, transparent 1px), linear-gradient(90deg, rgb(255 255 255) 1px, transparent 1px)",
+          backgroundSize: "24px 24px",
+        }}
+      />
+      <div className="relative w-[78%] max-w-[290px] rounded-xl bg-white p-3 text-left shadow-2xl shadow-black/30">
         <div className="flex items-center gap-2">
-          <span className="grid size-7 place-items-center rounded-full bg-[#111] text-[10px] font-bold text-white">SE</span>
+          <span className="grid size-7 place-items-center rounded-lg bg-[#0f766e] text-[10px] font-bold text-white">SE</span>
           <div className="leading-tight">
-            <p className="text-[11px] font-bold text-[#111]">{m.business}</p>
-            <p className="text-[9px] text-black/50">{m.service}</p>
+            <p className="text-[11px] font-bold text-[#0f172a]">{m.business}</p>
+            <p className="text-[9px] text-[#64748b]">{m.service}</p>
           </div>
         </div>
         <div className="mt-2.5 grid grid-cols-5 gap-1">
           {m.days.map(([d, n], i) => (
             <span
               key={d}
-              className={`rounded-md py-1 text-center leading-tight ${i === 1 ? "bg-[#111] text-white" : "bg-black/5 text-black/60"}`}
+              className={`rounded-md border py-1 text-center leading-tight ${i === 1 ? "border-[#0f766e] bg-[#0f766e] text-white" : "border-[#e2e8f0] text-[#64748b]"}`}
             >
               <span className="block text-[8px]">{d}</span>
               <span className="block text-[10px] font-bold">{n}</span>
@@ -180,20 +191,24 @@ function BookingMockup({ lang }: { lang: Locale }) {
           {slots.map((h) => (
             <span
               key={h}
-              className={`rounded-md border py-0.5 text-center font-mono text-[9px] ${
+              className={`rounded-md border py-0.5 text-center text-[9px] font-semibold tabular-nums ${
                 h === "14:00"
-                  ? "border-transparent bg-accent font-bold text-white"
+                  ? "border-[#0f766e] bg-[#0f766e] text-white"
                   : taken.has(h)
-                    ? "border-black/5 text-black/25 line-through"
-                    : "border-black/10 text-black/70"
+                    ? "border-[#e2e8f0] text-[#cbd5e1] line-through"
+                    : "border-[#e2e8f0] text-[#475569]"
               }`}
             >
               {h}
             </span>
           ))}
         </div>
-        <p className="mt-2.5 rounded-md bg-[#111] py-1.5 text-center text-[9.5px] font-bold text-white">{m.cta}</p>
+        <p className="mt-2.5 rounded-md bg-[#0f766e] py-1.5 text-center text-[9.5px] font-bold text-white">{m.cta}</p>
       </div>
+      <span className="absolute bottom-3 right-3 hidden items-center gap-1.5 rounded-full bg-white px-2.5 py-1 text-[9px] font-bold text-[#047857] shadow-lg shadow-black/20 sm:inline-flex">
+        <span className="grid size-3.5 place-items-center rounded-full bg-[#059669] text-[8px] text-white">✓</span>
+        {m.paid}
+      </span>
     </div>
   );
 }

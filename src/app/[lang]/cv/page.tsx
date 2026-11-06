@@ -93,7 +93,7 @@ export default async function CvPage({ params }: PageProps<"/[lang]/cv">) {
 
         <CvSection title={t.cv.projectsTitle}>
           <div className="space-y-5">
-            {t.projects.filter((p) => p.status !== "building").map((p) => (
+            {t.projects.filter((p) => p.status !== "building" && !p.foraDoCurriculo).map((p) => (
               <div key={p.slug} className="avoid-break text-sm">
                 <h3 className="font-semibold">
                   {p.name} <span className="font-normal text-muted">· {p.context}</span>

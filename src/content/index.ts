@@ -33,6 +33,8 @@ export type Project = {
   cover: "whatsapp" | "web" | "ticket" | "database" | "booking" | "scorm" | "pix" | "cli";
   /** "building": projeto em desenvolvimento. Mostra o selo e o escopo e fica fora do currículo. */
   status?: "building";
+  /** Fica só no portfólio, fora do currículo (já citado na experiência, ou menor), para o PDF caber em 2 páginas. */
+  foraDoCurriculo?: true;
   image?: string;
   link?: { href: string; label: string };
   /** Repositório público do projeto. */
@@ -322,6 +324,7 @@ const pt: Content = {
     },
     {
       slug: "silvinha",
+      foraDoCurriculo: true,
       cover: "whatsapp",
       name: "Silvinha: IA de vendas no WhatsApp",
       context: "Silva Nutrition · Nexly Group",
@@ -337,6 +340,7 @@ const pt: Content = {
     },
     {
       slug: "migracao",
+      foraDoCurriculo: true,
       cover: "database",
       name: "Migração de 100 mil registros",
       context: "Nexly Group",
@@ -352,6 +356,7 @@ const pt: Content = {
     },
     {
       slug: "caminho-critico",
+      foraDoCurriculo: true,
       cover: "cli",
       name: "Caminho crítico: prazo mínimo de um projeto",
       context: "Projeto pessoal · TypeScript e linha de comando",
@@ -633,6 +638,7 @@ const en: Content = {
     },
     {
       slug: "silvinha",
+      foraDoCurriculo: true,
       cover: "whatsapp",
       name: "Silvinha: WhatsApp sales AI",
       context: "Silva Nutrition · Nexly Group",
@@ -648,6 +654,7 @@ const en: Content = {
     },
     {
       slug: "migracao",
+      foraDoCurriculo: true,
       cover: "database",
       name: "100k-record data migration",
       context: "Nexly Group",
@@ -663,6 +670,7 @@ const en: Content = {
     },
     {
       slug: "caminho-critico",
+      foraDoCurriculo: true,
       cover: "cli",
       name: "Critical path: a project's shortest schedule",
       context: "Personal project · TypeScript CLI",

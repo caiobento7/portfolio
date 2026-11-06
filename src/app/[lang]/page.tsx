@@ -237,7 +237,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                       <h3 className="text-lg font-bold leading-snug text-fg">{p.name}</h3>
                       <p className="mt-1 text-[11px] uppercase tracking-wider text-subtle">{p.context}</p>
                     </div>
-                    <div className="relative h-48 w-full overflow-hidden rounded-md">
+                    <div className="relative h-44 w-full shrink-0 overflow-hidden rounded-md">
                       {p.image ? (
                         <Image
                           src={p.image}
@@ -280,12 +280,14 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                         </div>
                       )}
                     </div>
-                    <p className="text-sm leading-relaxed text-muted">{p.summary}</p>
+                    <p className="line-clamp-4 text-sm leading-relaxed text-muted" title={p.summary}>
+                      {p.summary}
+                    </p>
                     {p.status === "building" ? (
                       <div className="w-full text-left">
                         <p className="text-sm font-bold text-accent">{t.sections.scope}:</p>
                         <ul className="mt-2 space-y-1 text-[13px] leading-relaxed text-muted">
-                          {p.bullets.map((b) => (
+                          {p.bullets.slice(0, 3).map((b) => (
                             <li key={b} className="flex gap-2.5">
                               <span className="mt-2 size-1.5 shrink-0 rounded-full bg-accent" />
                               {b}

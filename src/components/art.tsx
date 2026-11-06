@@ -250,20 +250,20 @@ function PixMockup({ lang }: { lang: Locale }) {
   const m = pixText[lang];
   return (
     <div className="relative flex h-full w-full items-center justify-center gap-3 overflow-hidden bg-gradient-to-br from-[#32bcad]/40 to-[#0b0b0b] to-75% px-4 text-left">
-      <div className="w-[78%] overflow-hidden rounded-lg border border-white/10 bg-[#0f1115] shadow-xl shadow-black/50 sm:w-[56%]">
+      <div className="w-[78%] overflow-hidden rounded-lg border border-white/10 bg-[#0f1115] shadow-xl shadow-black/50 sm:w-[54%]">
         <div className="flex items-center justify-between border-b border-white/10 px-3 py-1.5">
           <span className="font-mono text-[9px] text-white/60">{m.log}</span>
           <span className="size-1.5 animate-pulse rounded-full bg-accent" />
         </div>
         <ul className="space-y-1 p-3 font-mono text-[9px] leading-tight text-white/70">
           <li>
-            POST /webhooks/pix <span className="text-accent">APLICADO</span>
+            webhook <span className="text-accent">APLICADO</span>
           </li>
           <li>
-            POST /webhooks/pix <span className="text-[#e5c07b]">DUPLICADO</span>
+            webhook <span className="text-[#e5c07b]">DUPLICADO</span>
           </li>
           <li>
-            POST /webhooks/pix <span className="text-[#e5c07b]">DUPLICADO</span>
+            webhook <span className="text-[#e5c07b]">DUPLICADO</span>
           </li>
           <li className="text-white/40">… ×5</li>
           <li>
@@ -271,9 +271,9 @@ function PixMockup({ lang }: { lang: Locale }) {
           </li>
         </ul>
       </div>
-      <div className="hidden w-[34%] rounded-xl bg-white p-3 shadow-2xl shadow-black/50 sm:block">
+      <div className="hidden w-[38%] rounded-xl bg-white p-3 shadow-2xl shadow-black/50 sm:block">
         <p className="text-[9px] font-medium uppercase tracking-wider text-black/45">{m.charge} Pix</p>
-        <p className="mt-1 text-lg font-bold leading-none text-[#111]">R$ 25,90</p>
+        <p className="mt-1 whitespace-nowrap text-base font-bold leading-none text-[#111]">R$ 25,90</p>
         <span className="mt-2.5 inline-block rounded-full bg-[#32bcad]/15 px-2 py-0.5 text-[9px] font-bold text-[#1f8a7e]">
           ✓ {m.paid}
         </span>

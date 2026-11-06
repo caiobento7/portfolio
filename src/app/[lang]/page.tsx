@@ -225,7 +225,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                 {t.projects.map((p) => (
                   <article
                     key={p.slug}
-                    className="group flex w-full flex-col items-center gap-6 rounded-md bg-card p-8 shadow-card transition duration-300 hover:bg-hover lg:p-10"
+                    className="group flex w-full flex-col items-center gap-4 rounded-md bg-card p-6 shadow-card transition duration-300 hover:bg-hover"
                   >
                     <div>
                       {p.status === "building" && (
@@ -234,10 +234,10 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                           {t.sections.building}
                         </span>
                       )}
-                      <h3 className="text-xl font-bold text-fg">{p.name}</h3>
-                      <p className="mt-1 text-xs uppercase tracking-wider text-subtle">{p.context}</p>
+                      <h3 className="text-lg font-bold leading-snug text-fg">{p.name}</h3>
+                      <p className="mt-1 text-[11px] uppercase tracking-wider text-subtle">{p.context}</p>
                     </div>
-                    <div className="relative h-52 w-full overflow-hidden rounded-md">
+                    <div className="relative h-48 w-full overflow-hidden rounded-md">
                       {p.image ? (
                         <Image
                           src={p.image}
@@ -260,9 +260,9 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                               rel="noreferrer"
                               title={p.repo.label}
                               aria-label={p.repo.label}
-                              className="grid size-14 place-items-center rounded-full bg-white text-black transition hover:bg-black hover:text-white"
+                              className="grid size-12 place-items-center rounded-full bg-white text-black transition hover:bg-black hover:text-white"
                             >
-                              <GithubIcon className="size-7" />
+                              <GithubIcon className="size-6" />
                             </a>
                           )}
                           {p.link && (
@@ -272,19 +272,19 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                               rel="noreferrer"
                               title={p.link.label}
                               aria-label={p.link.label}
-                              className="grid size-14 place-items-center rounded-full bg-white text-black transition hover:bg-black hover:text-white"
+                              className="grid size-12 place-items-center rounded-full bg-white text-black transition hover:bg-black hover:text-white"
                             >
-                              <EyeIcon className="size-7" />
+                              <EyeIcon className="size-6" />
                             </a>
                           )}
                         </div>
                       )}
                     </div>
-                    <p className="text-[1.02rem] leading-relaxed text-muted">{p.summary}</p>
+                    <p className="text-sm leading-relaxed text-muted">{p.summary}</p>
                     {p.status === "building" ? (
                       <div className="w-full text-left">
                         <p className="text-sm font-bold text-accent">{t.sections.scope}:</p>
-                        <ul className="mt-2 space-y-1.5 text-sm leading-relaxed text-muted">
+                        <ul className="mt-2 space-y-1 text-[13px] leading-relaxed text-muted">
                           {p.bullets.map((b) => (
                             <li key={b} className="flex gap-2.5">
                               <span className="mt-2 size-1.5 shrink-0 rounded-full bg-accent" />
@@ -294,11 +294,11 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                         </ul>
                       </div>
                     ) : (
-                      <p className="text-sm text-muted">
+                      <p className="text-[13px] leading-relaxed text-muted">
                         <span className="font-bold text-accent">{t.sections.impact}:</span> {p.impact}
                       </p>
                     )}
-                    <p className="mt-auto text-sm text-subtle">{p.stack.join(" - ")}</p>
+                    <p className="mt-auto text-xs text-subtle">{p.stack.join(" · ")}</p>
                     {p.status === "building" && <p className="text-xs italic text-subtle">{t.sections.soon}</p>}
                     {(p.link || p.repo) && (
                       <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm font-bold">

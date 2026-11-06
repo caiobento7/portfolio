@@ -316,7 +316,7 @@ export function Carousel({ children, labels, regionLabel }: { children: ReactNod
         aria-roledescription="carousel"
         aria-label={regionLabel}
         tabIndex={0}
-        className="relative flex snap-x snap-mandatory gap-6 overflow-x-auto py-4 [scrollbar-width:none] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent [&::-webkit-scrollbar]:hidden"
+        className="relative flex snap-x snap-mandatory gap-5 overflow-x-auto py-4 [scrollbar-width:none] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent [&::-webkit-scrollbar]:hidden"
       >
         {items.map((item, i) => (
           <div
@@ -324,7 +324,7 @@ export function Carousel({ children, labels, regionLabel }: { children: ReactNod
             role="group"
             aria-roledescription="slide"
             aria-label={`${i + 1} / ${total}`}
-            className="flex w-[88%] shrink-0 snap-start sm:w-[70%] md:w-[calc(50%-12px)] lg:w-[46%]"
+            className="flex w-[85%] shrink-0 snap-start sm:w-[60%] md:w-[47%] lg:w-[31.5%]"
           >
             {item}
           </div>

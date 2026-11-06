@@ -140,7 +140,6 @@ const mockText = {
     days: [["Seg", "10"], ["Ter", "11"], ["Qua", "12"], ["Qui", "13"], ["Sex", "14"]],
     cta: "Pagar sinal com Pix · R$ 20",
     paid: "Pix recebido",
-    events: "player · eventos",
   },
   en: {
     business: "Example Studio",
@@ -148,7 +147,6 @@ const mockText = {
     days: [["Mon", "10"], ["Tue", "11"], ["Wed", "12"], ["Thu", "13"], ["Fri", "14"]],
     cta: "Pay deposit with Pix · R$ 20",
     paid: "Pix received",
-    events: "player · events",
   },
 };
 
@@ -209,48 +207,6 @@ function BookingMockup({ lang }: { lang: Locale }) {
         <span className="grid size-3.5 place-items-center rounded-full bg-[#059669] text-[8px] text-white">✓</span>
         {m.paid}
       </span>
-    </div>
-  );
-}
-
-/** Tela ilustrativa da lib SCORM: código de uso e log de eventos do player. */
-function ScormMockup({ lang }: { lang: Locale }) {
-  const m = mockText[lang];
-  return (
-    <div className="relative flex h-full w-full items-center justify-center gap-3 overflow-hidden bg-gradient-to-br from-[#3178c6]/40 to-[#0b0b0b] to-75% px-4 text-left">
-      <pre className="hidden w-[52%] overflow-hidden rounded-lg border border-white/10 bg-[#0f1115] p-3 font-mono text-[9.5px] leading-[1.7] text-[#abb2bf] shadow-xl shadow-black/50 sm:block">
-        <span className="text-[#c678dd]">import</span> {"{ createPackage }\n  "}
-        <span className="text-[#c678dd]">from</span> <span className="text-[#98c379]">&quot;scorm-kit&quot;</span>;{"\n\n"}
-        <span className="text-[#c678dd]">await</span> <span className="text-[#61afef]">createPackage</span>({"{\n"}
-        {"  "}source: <span className="text-[#98c379]">&quot;./curso&quot;</span>,{"\n"}
-        {"  "}version: <span className="text-[#98c379]">&quot;1.2&quot;</span>,{"\n"}
-        {"});"}
-      </pre>
-      <div className="w-[72%] overflow-hidden rounded-lg border border-white/10 bg-[#0f1115] shadow-xl shadow-black/50 sm:w-[40%]">
-        <div className="flex items-center justify-between border-b border-white/10 px-3 py-1.5">
-          <span className="font-mono text-[9px] text-white/60">{m.events}</span>
-          <span className="size-1.5 animate-pulse rounded-full bg-accent" />
-        </div>
-        <ul className="space-y-1 p-3 font-mono text-[9px] leading-tight">
-          <li className="text-white/70">
-            Initialize <span className="text-accent">✓</span>
-          </li>
-          <li className="text-white/70">
-            lesson_status → <span className="text-[#e5c07b]">completed</span>
-          </li>
-          <li className="text-white/70">
-            score.raw → <span className="text-[#d19a66]">90</span>
-          </li>
-          <li className="text-white/70">
-            Commit <span className="text-accent">✓</span>
-          </li>
-        </ul>
-        <div className="px-3 pb-3">
-          <span className="block h-1 overflow-hidden rounded-full bg-white/10">
-            <span className="block h-full w-full rounded-full bg-accent" />
-          </span>
-        </div>
-      </div>
     </div>
   );
 }
@@ -345,12 +301,47 @@ function CliMockup({ lang }: { lang: Locale }) {
   );
 }
 
+const filaText = {
+  pt: { queue: "fila", retry: "espera", dead: "mortas", delivered: "entregue ao ERP" },
+  en: { queue: "queue", retry: "retry", dead: "dead letter", delivered: "delivered to ERP" },
+};
+
+/** Tela ilustrativa do hub: fila principal, filas de espera e fila de mortas. */
+function FilaMockup({ lang }: { lang: Locale }) {
+  const m = filaText[lang];
+  const caixa = "rounded-lg border border-white/10 bg-[#0f1115] px-2.5 py-2 shadow-xl shadow-black/40";
+  const msg = (cor: string) => <span className={`h-2 w-5 rounded-sm ${cor}`} />;
+  return (
+    <div className="relative flex h-full w-full items-center justify-center overflow-hidden bg-gradient-to-br from-[#3730a3] via-[#4f46e5] to-[#7c3aed] px-4">
+      <div className="grid w-full max-w-[320px] grid-cols-[1fr_auto_1fr] items-center gap-2 font-mono text-[9px] text-white/80">
+        <div className={caixa}>
+          <p className="mb-1.5 text-white/50">hub.{m.queue}</p>
+          <div className="flex gap-1">{msg("bg-[#60a5fa]")}{msg("bg-[#60a5fa]")}{msg("bg-[#60a5fa]")}</div>
+        </div>
+        <span className="text-white/60">→</span>
+        <div className={`${caixa} text-center`}>
+          <p className="text-[#86efac]">✓ {m.delivered}</p>
+        </div>
+        <div className={caixa}>
+          <p className="mb-1.5 text-white/50">{m.retry} 5s · 30s · 2m</p>
+          <div className="flex gap-1">{msg("bg-[#fbbf24]")}{msg("bg-[#fbbf24]")}</div>
+        </div>
+        <span className="text-white/60">↺</span>
+        <div className={caixa}>
+          <p className="mb-1.5 text-white/50">hub.{m.dead}</p>
+          <div className="flex gap-1">{msg("bg-[#f87171]")}</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /** Capa desenhada para projetos sem print público (código de empresa ou projeto em andamento). */
 export function ProjectCover({ project, lang }: { project: Project; lang: Locale }) {
   if (project.cover === "booking") return <BookingMockup lang={lang} />;
-  if (project.cover === "scorm") return <ScormMockup lang={lang} />;
   if (project.cover === "pix") return <PixMockup lang={lang} />;
   if (project.cover === "cli") return <CliMockup lang={lang} />;
+  if (project.cover === "fila") return <FilaMockup lang={lang} />;
   const s = coverStyle[project.cover];
   return (
     <div

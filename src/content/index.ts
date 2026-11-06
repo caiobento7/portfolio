@@ -30,7 +30,7 @@ export type Project = {
   bullets: string[];
   impact: string;
   stack: string[];
-  cover: "whatsapp" | "web" | "ticket" | "database" | "booking" | "scorm" | "pix" | "cli";
+  cover: "whatsapp" | "web" | "ticket" | "database" | "booking" | "pix" | "cli" | "fila";
   /** "building": projeto em desenvolvimento. Mostra o selo e o escopo e fica fora do currículo. */
   status?: "building";
   /** Fica só no portfólio, fora do currículo (já citado na experiência, ou menor), para o PDF caber em 2 páginas. */
@@ -239,22 +239,39 @@ const pt: Content = {
   ],
   projects: [
     {
-      slug: "cursolab",
-      cover: "web",
-      image: "/projects/cursolab.png",
-      name: "CursoLab: plataforma de cursos online",
-      context: "Projeto acadêmico · Engenharia de Software",
+      slug: "agenda",
+      cover: "booking",
+      name: "Agenda: SaaS de agendamento com Pix",
+      context: "Projeto pessoal · Full stack",
       summary:
-        "Plataforma completa de cursos: alunos compram, assistem às aulas, fazem quizzes e emitem certificado; administradores montam o conteúdo e acompanham indicadores.",
+        "Plataforma em que barbearias, estúdios e personal trainers criam a própria página de agendamento: o cliente escolhe o serviço e o horário, paga o sinal via Pix e recebe confirmação e lembrete por e-mail.",
       bullets: [
-        "API REST em Express com controle de acesso no servidor; o frontend nunca toca no banco",
-        "Player com progressão por módulo, quizzes corrigidos no servidor e certificado em PDF",
-        "Backoffice com indicadores, editor de módulos salvo numa transação e upload para o Storage",
+        "Horário nunca duplicado: constraint de exclusão no PostgreSQL, mesmo com várias reservas ao mesmo tempo",
+        "Vários negócios no mesmo banco, isolados por Row Level Security",
+        "Sinal via Pix (Mercado Pago) com webhook assinado e idempotente, e lembretes por e-mail",
+        "Agenda com fuso horário, expediente em turnos, folga entre atendimentos e bloqueios",
       ],
-      impact: "No ar na Vercel, com frontend estático e API serverless no mesmo domínio.",
-      stack: ["React 19", "Vite", "Node.js", "Express 5", "Supabase", "PostgreSQL", "jsPDF"],
-      link: { href: "https://plataforma-cursos-omega.vercel.app", label: "Ver site no ar" },
-      repo: { href: "https://github.com/caiobento7/plataforma_cursos", label: "Ver código" },
+      impact: "60 testes em Vitest, rodando em PGlite e em PostgreSQL de verdade no CI, e testes de ponta a ponta com Playwright no computador e no celular.",
+      stack: ["Next.js", "TypeScript", "PostgreSQL", "Drizzle", "Mercado Pago", "Vitest", "Playwright"],
+      repo: { href: "https://github.com/caiobento7/agenda", label: "Ver código" },
+    },
+    {
+      slug: "hub-integracoes",
+      cover: "fila",
+      foraDoCurriculo: true,
+      name: "Hub de integrações com fila e reprocessamento",
+      context: "Projeto pessoal · Java, Spring Boot e RabbitMQ",
+      summary:
+        "Serviço que liga uma loja virtual a um ERP: recebe pedidos por webhook assinado, coloca numa fila do RabbitMQ, transforma para o formato do ERP e entrega, sem perder nem duplicar pedido quando o ERP cai.",
+      bullets: [
+        "Retentativas com espera crescente (5s, 30s, 2min) usando filas com TTL e dead letter exchange",
+        "Fila de mensagens mortas para erros permanentes, com reprocessamento pelo painel",
+        "Webhook assinado com HMAC, idempotência por evento e publicação na fila só depois do commit",
+        "Painel com linha do tempo de cada tentativa e simulação de ERP instável ou fora do ar",
+      ],
+      impact: "26 testes, incluindo o fluxo completo com RabbitMQ e PostgreSQL de verdade via Testcontainers no CI.",
+      stack: ["Java 21", "Spring Boot", "RabbitMQ", "PostgreSQL", "Testcontainers", "Docker"],
+      repo: { href: "https://github.com/caiobento7/hub-integracoes", label: "Ver código" },
     },
     {
       slug: "pix-cobrancas",
@@ -274,55 +291,6 @@ const pt: Content = {
       repo: { href: "https://github.com/caiobento7/pix-cobrancas", label: "Ver código" },
     },
     {
-      slug: "suporte",
-      cover: "ticket",
-      name: "Central de suporte com Slack e Jira",
-      context: "Nexly Group",
-      summary:
-        "Aplicação web de ponta a ponta para centralizar chamados técnicos: o cliente abre o pedido pela interface e o resto acontece sozinho.",
-      bullets: [
-        "Notificação em tempo real no Slack a cada chamado aberto",
-        "Criação automática de tickets no Jira, sem triagem manual",
-        "Histórico salvo em banco para rastrear cada atendimento",
-      ],
-      impact: "Triagem automatizada de ponta a ponta e fim das solicitações espalhadas por vários canais.",
-      stack: ["Next.js", "Node.js", "Slack API", "Jira API", "REST APIs"],
-    },
-    {
-      slug: "agenda",
-      cover: "booking",
-      name: "Agenda: SaaS de agendamento com Pix",
-      context: "Projeto pessoal · Full stack",
-      summary:
-        "Plataforma em que barbearias, estúdios e personal trainers criam a própria página de agendamento: o cliente escolhe o serviço e o horário, paga o sinal via Pix e recebe confirmação e lembrete por e-mail.",
-      bullets: [
-        "Horário nunca duplicado: constraint de exclusão no PostgreSQL, mesmo com várias reservas ao mesmo tempo",
-        "Vários negócios no mesmo banco, isolados por Row Level Security",
-        "Sinal via Pix (Mercado Pago) com webhook assinado e idempotente, e lembretes por e-mail",
-        "Agenda com fuso horário, expediente em turnos, folga entre atendimentos e bloqueios",
-      ],
-      impact: "60 testes em Vitest, rodando em PGlite e em PostgreSQL de verdade no CI, e testes de ponta a ponta com Playwright no computador e no celular.",
-      stack: ["Next.js", "TypeScript", "PostgreSQL", "Drizzle", "Mercado Pago", "Vitest", "Playwright"],
-      repo: { href: "https://github.com/caiobento7/agenda", label: "Ver código" },
-    },
-    {
-      slug: "scorm-kit",
-      cover: "scorm",
-      status: "building",
-      name: "SCORM Kit: biblioteca open source",
-      context: "Open source · TypeScript",
-      summary:
-        "Pacote npm que transforma conteúdo HTML em pacotes SCORM e um player React que roda esses cursos registrando progresso e nota, com um playground para testar no navegador.",
-      bullets: [
-        "API tipada em TypeScript, com builds ESM e CJS",
-        "Manifesto e API SCORM 1.2 e 2004 implementados a partir da especificação pública",
-        "Player React com log de eventos ao vivo no playground",
-        "Monorepo com testes, changesets e publicação no npm pelo CI",
-      ],
-      impact: "",
-      stack: ["TypeScript", "React", "Next.js", "Vitest", "pnpm workspaces", "GitHub Actions"],
-    },
-    {
       slug: "silvinha",
       foraDoCurriculo: true,
       cover: "whatsapp",
@@ -339,6 +307,24 @@ const pt: Content = {
       stack: ["n8n", "WhatsApp Business API", "WooCommerce API", "Webhooks", "Supabase", "PostgreSQL"],
     },
     {
+      slug: "cursolab",
+      cover: "web",
+      image: "/projects/cursolab.png",
+      name: "CursoLab: plataforma de cursos online",
+      context: "Projeto acadêmico · Engenharia de Software",
+      summary:
+        "Plataforma completa de cursos: alunos compram, assistem às aulas, fazem quizzes e emitem certificado; administradores montam o conteúdo e acompanham indicadores.",
+      bullets: [
+        "API REST em Express com controle de acesso no servidor; o frontend nunca toca no banco",
+        "Player com progressão por módulo, quizzes corrigidos no servidor e certificado em PDF",
+        "Backoffice com indicadores, editor de módulos salvo numa transação e upload para o Storage",
+      ],
+      impact: "No ar na Vercel, com frontend estático e API serverless no mesmo domínio.",
+      stack: ["React 19", "Vite", "Node.js", "Express 5", "Supabase", "PostgreSQL", "jsPDF"],
+      link: { href: "https://plataforma-cursos-omega.vercel.app", label: "Ver site no ar" },
+      repo: { href: "https://github.com/caiobento7/plataforma_cursos", label: "Ver código" },
+    },
+    {
       slug: "migracao",
       foraDoCurriculo: true,
       cover: "database",
@@ -353,6 +339,21 @@ const pt: Content = {
       ],
       impact: "100% dos dados migrados com zero intervenção manual.",
       stack: ["n8n", "WooCommerce API", "Supabase", "PostgreSQL", "REST APIs"],
+    },
+    {
+      slug: "suporte",
+      cover: "ticket",
+      name: "Central de suporte com Slack e Jira",
+      context: "Nexly Group",
+      summary:
+        "Aplicação web de ponta a ponta para centralizar chamados técnicos: o cliente abre o pedido pela interface e o resto acontece sozinho.",
+      bullets: [
+        "Notificação em tempo real no Slack a cada chamado aberto",
+        "Criação automática de tickets no Jira, sem triagem manual",
+        "Histórico salvo em banco para rastrear cada atendimento",
+      ],
+      impact: "Triagem automatizada de ponta a ponta e fim das solicitações espalhadas por vários canais.",
+      stack: ["Next.js", "Node.js", "Slack API", "Jira API", "REST APIs"],
     },
     {
       slug: "caminho-critico",
@@ -553,22 +554,39 @@ const en: Content = {
   ],
   projects: [
     {
-      slug: "cursolab",
-      cover: "web",
-      image: "/projects/cursolab.png",
-      name: "CursoLab: online course platform",
-      context: "Academic project · Software Engineering",
+      slug: "agenda",
+      cover: "booking",
+      name: "Agenda: booking SaaS with Pix payments",
+      context: "Personal project · Full stack",
       summary:
-        "A complete course platform: students buy courses, watch lessons, take quizzes and earn certificates; admins build content and track metrics.",
+        "A platform where barbershops, studios and personal trainers get their own booking page: customers pick a service and a time slot, pay a deposit via Pix and get an email confirmation and reminder.",
       bullets: [
-        "Express REST API with server-side access control; the frontend never touches the database",
-        "Player with module-by-module progression, server-graded quizzes and PDF certificates",
-        "Admin backoffice with metrics, a transactional module editor and uploads to Storage",
+        "No double bookings: a PostgreSQL exclusion constraint, even with simultaneous requests",
+        "Multi-tenant, with each business's data isolated by Row Level Security",
+        "Pix deposits (Mercado Pago) confirmed by a signed, idempotent webhook, plus email reminders",
+        "Time zone aware scheduling with split business hours, buffers between appointments and blocked periods",
       ],
-      impact: "Live on Vercel, with a static frontend and a serverless API on the same domain.",
-      stack: ["React 19", "Vite", "Node.js", "Express 5", "Supabase", "PostgreSQL", "jsPDF"],
-      link: { href: "https://plataforma-cursos-omega.vercel.app", label: "Visit live site" },
-      repo: { href: "https://github.com/caiobento7/plataforma_cursos", label: "View code" },
+      impact: "60 Vitest tests, run on PGlite and on a real PostgreSQL in CI, plus Playwright end-to-end tests on desktop and mobile.",
+      stack: ["Next.js", "TypeScript", "PostgreSQL", "Drizzle", "Mercado Pago", "Vitest", "Playwright"],
+      repo: { href: "https://github.com/caiobento7/agenda", label: "View code" },
+    },
+    {
+      slug: "hub-integracoes",
+      cover: "fila",
+      foraDoCurriculo: true,
+      name: "Integration hub with a queue and replay",
+      context: "Personal project · Java, Spring Boot and RabbitMQ",
+      summary:
+        "A service that connects an online store to an ERP: it receives orders through a signed webhook, queues them in RabbitMQ, maps them to the ERP format and delivers them, without losing or duplicating orders when the ERP goes down.",
+      bullets: [
+        "Retries with growing delays (5s, 30s, 2min) using TTL queues and a dead letter exchange",
+        "Dead letter queue for permanent errors, with replay from the dashboard",
+        "HMAC-signed webhook, per-event idempotency and publishing to the queue only after commit",
+        "Dashboard with a timeline of every attempt and a flaky or offline ERP simulator",
+      ],
+      impact: "26 tests, including the full flow against real RabbitMQ and PostgreSQL via Testcontainers in CI.",
+      stack: ["Java 21", "Spring Boot", "RabbitMQ", "PostgreSQL", "Testcontainers", "Docker"],
+      repo: { href: "https://github.com/caiobento7/hub-integracoes", label: "View code" },
     },
     {
       slug: "pix-cobrancas",
@@ -588,55 +606,6 @@ const en: Content = {
       repo: { href: "https://github.com/caiobento7/pix-cobrancas", label: "View code" },
     },
     {
-      slug: "suporte",
-      cover: "ticket",
-      name: "Support hub with Slack and Jira",
-      context: "Nexly Group",
-      summary:
-        "An end-to-end web app that centralizes support requests: the customer opens a ticket in the UI and everything else happens automatically.",
-      bullets: [
-        "Real-time Slack notification for every new request",
-        "Jira tickets created automatically, with no manual triage",
-        "History stored in the database so every request is traceable",
-      ],
-      impact: "Fully automated triage and no more requests scattered across channels.",
-      stack: ["Next.js", "Node.js", "Slack API", "Jira API", "REST APIs"],
-    },
-    {
-      slug: "agenda",
-      cover: "booking",
-      name: "Agenda: booking SaaS with Pix payments",
-      context: "Personal project · Full stack",
-      summary:
-        "A platform where barbershops, studios and personal trainers get their own booking page: customers pick a service and a time slot, pay a deposit via Pix and get an email confirmation and reminder.",
-      bullets: [
-        "No double bookings: a PostgreSQL exclusion constraint, even with simultaneous requests",
-        "Multi-tenant, with each business's data isolated by Row Level Security",
-        "Pix deposits (Mercado Pago) confirmed by a signed, idempotent webhook, plus email reminders",
-        "Time zone aware scheduling with split business hours, buffers between appointments and blocked periods",
-      ],
-      impact: "60 Vitest tests, run on PGlite and on a real PostgreSQL in CI, plus Playwright end-to-end tests on desktop and mobile.",
-      stack: ["Next.js", "TypeScript", "PostgreSQL", "Drizzle", "Mercado Pago", "Vitest", "Playwright"],
-      repo: { href: "https://github.com/caiobento7/agenda", label: "View code" },
-    },
-    {
-      slug: "scorm-kit",
-      cover: "scorm",
-      status: "building",
-      name: "SCORM Kit: open source library",
-      context: "Open source · TypeScript",
-      summary:
-        "An npm package that turns HTML content into SCORM packages, plus a React player that runs those courses and tracks progress and score, with an in-browser playground.",
-      bullets: [
-        "Fully typed TypeScript API with ESM and CJS builds",
-        "SCORM 1.2 and 2004 manifest and runtime API built from the public specification",
-        "React player with a live event log in the playground",
-        "Monorepo with tests, changesets and npm publishing from CI",
-      ],
-      impact: "",
-      stack: ["TypeScript", "React", "Next.js", "Vitest", "pnpm workspaces", "GitHub Actions"],
-    },
-    {
       slug: "silvinha",
       foraDoCurriculo: true,
       cover: "whatsapp",
@@ -653,6 +622,24 @@ const en: Content = {
       stack: ["n8n", "WhatsApp Business API", "WooCommerce API", "Webhooks", "Supabase", "PostgreSQL"],
     },
     {
+      slug: "cursolab",
+      cover: "web",
+      image: "/projects/cursolab.png",
+      name: "CursoLab: online course platform",
+      context: "Academic project · Software Engineering",
+      summary:
+        "A complete course platform: students buy courses, watch lessons, take quizzes and earn certificates; admins build content and track metrics.",
+      bullets: [
+        "Express REST API with server-side access control; the frontend never touches the database",
+        "Player with module-by-module progression, server-graded quizzes and PDF certificates",
+        "Admin backoffice with metrics, a transactional module editor and uploads to Storage",
+      ],
+      impact: "Live on Vercel, with a static frontend and a serverless API on the same domain.",
+      stack: ["React 19", "Vite", "Node.js", "Express 5", "Supabase", "PostgreSQL", "jsPDF"],
+      link: { href: "https://plataforma-cursos-omega.vercel.app", label: "Visit live site" },
+      repo: { href: "https://github.com/caiobento7/plataforma_cursos", label: "View code" },
+    },
+    {
       slug: "migracao",
       foraDoCurriculo: true,
       cover: "database",
@@ -667,6 +654,21 @@ const en: Content = {
       ],
       impact: "100% of the data migrated with zero manual intervention.",
       stack: ["n8n", "WooCommerce API", "Supabase", "PostgreSQL", "REST APIs"],
+    },
+    {
+      slug: "suporte",
+      cover: "ticket",
+      name: "Support hub with Slack and Jira",
+      context: "Nexly Group",
+      summary:
+        "An end-to-end web app that centralizes support requests: the customer opens a ticket in the UI and everything else happens automatically.",
+      bullets: [
+        "Real-time Slack notification for every new request",
+        "Jira tickets created automatically, with no manual triage",
+        "History stored in the database so every request is traceable",
+      ],
+      impact: "Fully automated triage and no more requests scattered across channels.",
+      stack: ["Next.js", "Node.js", "Slack API", "Jira API", "REST APIs"],
     },
     {
       slug: "caminho-critico",

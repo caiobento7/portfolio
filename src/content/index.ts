@@ -289,19 +289,19 @@ const pt: Content = {
     {
       slug: "agenda",
       cover: "booking",
-      status: "building",
       name: "Agenda: SaaS de agendamento com Pix",
       context: "Projeto pessoal · Full stack",
       summary:
-        "Plataforma em que barbearias, estúdios e personal trainers criam a própria página de agendamento: o cliente escolhe o serviço e o horário e paga o sinal via Pix.",
+        "Plataforma em que barbearias, estúdios e personal trainers criam a própria página de agendamento: o cliente escolhe o serviço e o horário, paga o sinal via Pix e recebe confirmação e lembrete por e-mail.",
       bullets: [
-        "Vários negócios no mesmo sistema, com dados isolados por Row Level Security no Postgres",
-        "Agenda sem conflito: fuso horário, expediente e bloqueio de reserva simultânea",
-        "Sinal via Pix com webhook de confirmação e lembretes automáticos por e-mail",
-        "Testes da regra de agenda e do fluxo de reserva, com CI no GitHub Actions",
+        "Horário nunca duplicado: constraint de exclusão no PostgreSQL, mesmo com várias reservas ao mesmo tempo",
+        "Vários negócios no mesmo banco, isolados por Row Level Security",
+        "Sinal via Pix (Mercado Pago) com webhook assinado e idempotente, e lembretes por e-mail",
+        "Agenda com fuso horário, expediente em turnos, folga entre atendimentos e bloqueios",
       ],
-      impact: "",
+      impact: "60 testes em Vitest, rodando em PGlite e em PostgreSQL de verdade no CI, e testes de ponta a ponta com Playwright no computador e no celular.",
       stack: ["Next.js", "TypeScript", "PostgreSQL", "Drizzle", "Mercado Pago", "Vitest", "Playwright"],
+      repo: { href: "https://github.com/caiobento7/agenda", label: "Ver código" },
     },
     {
       slug: "scorm-kit",
@@ -600,19 +600,19 @@ const en: Content = {
     {
       slug: "agenda",
       cover: "booking",
-      status: "building",
       name: "Agenda: booking SaaS with Pix payments",
       context: "Personal project · Full stack",
       summary:
-        "A platform where barbershops, studios and personal trainers get their own booking page: customers pick a service and a time slot and pay a deposit via Pix.",
+        "A platform where barbershops, studios and personal trainers get their own booking page: customers pick a service and a time slot, pay a deposit via Pix and get an email confirmation and reminder.",
       bullets: [
-        "Multi-tenant, with each business's data isolated by Postgres Row Level Security",
-        "Conflict-free scheduling: time zones, business hours and locking for simultaneous bookings",
-        "Pix deposits confirmed by webhook, plus automatic email reminders",
-        "Tests for the scheduling rules and the booking flow, with CI on GitHub Actions",
+        "No double bookings: a PostgreSQL exclusion constraint, even with simultaneous requests",
+        "Multi-tenant, with each business's data isolated by Row Level Security",
+        "Pix deposits (Mercado Pago) confirmed by a signed, idempotent webhook, plus email reminders",
+        "Time zone aware scheduling with split business hours, buffers between appointments and blocked periods",
       ],
-      impact: "",
+      impact: "60 Vitest tests, run on PGlite and on a real PostgreSQL in CI, plus Playwright end-to-end tests on desktop and mobile.",
       stack: ["Next.js", "TypeScript", "PostgreSQL", "Drizzle", "Mercado Pago", "Vitest", "Playwright"],
+      repo: { href: "https://github.com/caiobento7/agenda", label: "View code" },
     },
     {
       slug: "scorm-kit",

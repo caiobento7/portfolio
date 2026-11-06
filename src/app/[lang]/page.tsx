@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { contact, getContent, hasLocale } from "@/content";
 import { HeroArt, PhoneArt, ProjectCover } from "@/components/art";
-import { BackToTop, Nav, Reveal, SocialLinks, ThemeToggle } from "@/components/client";
+import { BackToTop, Carousel, Nav, Reveal, SocialLinks, ThemeToggle } from "@/components/client";
 import { DocIcon, EyeIcon, GithubIcon, MailIcon, PhoneIcon, PinIcon, SkillIcon, WhatsappIcon } from "@/components/icons";
 
 export default async function Home({ params }: PageProps<"/[lang]">) {
@@ -220,103 +220,103 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
                 GitHub
               </a>
             </header>
-            <div className="grid gap-10 md:grid-cols-2">
-              {t.projects.map((p, i) => (
-                <article
-                  key={p.slug}
-                  data-reveal
-                  style={{ ["--delay" as string]: `${(i % 2) * 120}ms` }}
-                  className="group flex flex-col items-center gap-6 rounded-md bg-card p-8 shadow-card transition duration-300 hover:bg-hover lg:p-10"
-                >
-                  <div>
-                    {p.status === "building" && (
-                      <span className="mb-3 inline-flex items-center gap-1.5 rounded-full border border-line px-2 py-0.5 text-[10px] font-medium text-subtle">
-                        <span className="size-1 rounded-full bg-subtle" />
-                        {t.sections.building}
-                      </span>
-                    )}
-                    <h3 className="text-xl font-bold text-fg">{p.name}</h3>
-                    <p className="mt-1 text-xs uppercase tracking-wider text-subtle">{p.context}</p>
-                  </div>
-                  <div className="relative h-52 w-full overflow-hidden rounded-md">
-                    {p.image ? (
-                      <Image
-                        src={p.image}
-                        alt={p.name}
-                        fill
-                        sizes="(min-width: 768px) 520px, 100vw"
-                        className="object-cover object-top transition duration-300 group-hover:opacity-50"
-                      />
+            <div data-reveal>
+              <Carousel labels={t.sections.carousel} regionLabel={t.sections.projects}>
+                {t.projects.map((p) => (
+                  <article
+                    key={p.slug}
+                    className="group flex w-full flex-col items-center gap-6 rounded-md bg-card p-8 shadow-card transition duration-300 hover:bg-hover lg:p-10"
+                  >
+                    <div>
+                      {p.status === "building" && (
+                        <span className="mb-3 inline-flex items-center gap-1.5 rounded-full border border-line px-2 py-0.5 text-[10px] font-medium text-subtle">
+                          <span className="size-1 rounded-full bg-subtle" />
+                          {t.sections.building}
+                        </span>
+                      )}
+                      <h3 className="text-xl font-bold text-fg">{p.name}</h3>
+                      <p className="mt-1 text-xs uppercase tracking-wider text-subtle">{p.context}</p>
+                    </div>
+                    <div className="relative h-52 w-full overflow-hidden rounded-md">
+                      {p.image ? (
+                        <Image
+                          src={p.image}
+                          alt={p.name}
+                          fill
+                          sizes="(min-width: 768px) 520px, 100vw"
+                          className="object-cover object-top transition duration-300 group-hover:opacity-50"
+                        />
+                      ) : (
+                        <div className="h-full transition duration-300 group-hover:opacity-50">
+                          <ProjectCover project={p} lang={lang} />
+                        </div>
+                      )}
+                      {(p.link || p.repo) && (
+                        <div className="invisible absolute inset-0 flex items-center justify-center gap-3 opacity-0 transition duration-300 group-hover:visible group-hover:opacity-100">
+                          {p.repo && (
+                            <a
+                              href={p.repo.href}
+                              target="_blank"
+                              rel="noreferrer"
+                              title={p.repo.label}
+                              aria-label={p.repo.label}
+                              className="grid size-14 place-items-center rounded-full bg-white text-black transition hover:bg-black hover:text-white"
+                            >
+                              <GithubIcon className="size-7" />
+                            </a>
+                          )}
+                          {p.link && (
+                            <a
+                              href={p.link.href}
+                              target="_blank"
+                              rel="noreferrer"
+                              title={p.link.label}
+                              aria-label={p.link.label}
+                              className="grid size-14 place-items-center rounded-full bg-white text-black transition hover:bg-black hover:text-white"
+                            >
+                              <EyeIcon className="size-7" />
+                            </a>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                    <p className="text-[1.02rem] leading-relaxed text-muted">{p.summary}</p>
+                    {p.status === "building" ? (
+                      <div className="w-full text-left">
+                        <p className="text-sm font-bold text-accent">{t.sections.scope}:</p>
+                        <ul className="mt-2 space-y-1.5 text-sm leading-relaxed text-muted">
+                          {p.bullets.map((b) => (
+                            <li key={b} className="flex gap-2.5">
+                              <span className="mt-2 size-1.5 shrink-0 rounded-full bg-accent" />
+                              {b}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                     ) : (
-                      <div className="h-full transition duration-300 group-hover:opacity-50">
-                        <ProjectCover project={p} lang={lang} />
-                      </div>
+                      <p className="text-sm text-muted">
+                        <span className="font-bold text-accent">{t.sections.impact}:</span> {p.impact}
+                      </p>
                     )}
+                    <p className="mt-auto text-sm text-subtle">{p.stack.join(" - ")}</p>
+                    {p.status === "building" && <p className="text-xs italic text-subtle">{t.sections.soon}</p>}
                     {(p.link || p.repo) && (
-                      <div className="invisible absolute inset-0 flex items-center justify-center gap-3 opacity-0 transition duration-300 group-hover:visible group-hover:opacity-100">
-                        {p.repo && (
-                          <a
-                            href={p.repo.href}
-                            target="_blank"
-                            rel="noreferrer"
-                            title={p.repo.label}
-                            aria-label={p.repo.label}
-                            className="grid size-14 place-items-center rounded-full bg-white text-black transition hover:bg-black hover:text-white"
-                          >
-                            <GithubIcon className="size-7" />
+                      <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm font-bold">
+                        {p.link && (
+                          <a href={p.link.href} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 text-accent hover:underline">
+                            <EyeIcon className="size-4" /> {p.link.label}
                           </a>
                         )}
-                        {p.link && (
-                          <a
-                            href={p.link.href}
-                            target="_blank"
-                            rel="noreferrer"
-                            title={p.link.label}
-                            aria-label={p.link.label}
-                            className="grid size-14 place-items-center rounded-full bg-white text-black transition hover:bg-black hover:text-white"
-                          >
-                            <EyeIcon className="size-7" />
+                        {p.repo && (
+                          <a href={p.repo.href} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 text-accent hover:underline">
+                            <GithubIcon className="size-4" /> {p.repo.label}
                           </a>
                         )}
                       </div>
                     )}
-                  </div>
-                  <p className="text-[1.02rem] leading-relaxed text-muted">{p.summary}</p>
-                  {p.status === "building" ? (
-                    <div className="w-full text-left">
-                      <p className="text-sm font-bold text-accent">{t.sections.scope}:</p>
-                      <ul className="mt-2 space-y-1.5 text-sm leading-relaxed text-muted">
-                        {p.bullets.map((b) => (
-                          <li key={b} className="flex gap-2.5">
-                            <span className="mt-2 size-1.5 shrink-0 rounded-full bg-accent" />
-                            {b}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ) : (
-                    <p className="text-sm text-muted">
-                      <span className="font-bold text-accent">{t.sections.impact}:</span> {p.impact}
-                    </p>
-                  )}
-                  <p className="mt-auto text-sm text-subtle">{p.stack.join(" - ")}</p>
-                  {p.status === "building" && <p className="text-xs italic text-subtle">{t.sections.soon}</p>}
-                  {(p.link || p.repo) && (
-                    <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm font-bold">
-                      {p.link && (
-                        <a href={p.link.href} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 text-accent hover:underline">
-                          <EyeIcon className="size-4" /> {p.link.label}
-                        </a>
-                      )}
-                      {p.repo && (
-                        <a href={p.repo.href} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 text-accent hover:underline">
-                          <GithubIcon className="size-4" /> {p.repo.label}
-                        </a>
-                      )}
-                    </div>
-                  )}
-                </article>
-              ))}
+                  </article>
+                ))}
+              </Carousel>
             </div>
           </div>
         </section>

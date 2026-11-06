@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Children, type ReactNode, useEffect, useRef, useState } from "react";
 import type { Locale } from "@/content";
 import { ArrowUpIcon, CloseIcon, GithubIcon, LinkedinIcon, MenuIcon, MoonIcon, SunIcon, WhatsappIcon } from "./icons";
 
@@ -251,4 +251,107 @@ export function Reveal() {
     return () => io.disconnect();
   }, []);
   return null;
+}
+
+type CarouselLabels = { prev: string; next: string; hint: string; goTo: string };
+
+function Chevron({ dir }: { dir: "left" | "right" }) {
+  return (
+    <svg aria-hidden viewBox="0 0 24 24" className="size-5" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d={dir === "left" ? "m15 18-6-6 6-6" : "m9 18 6-6-6-6"} />
+    </svg>
+  );
+}
+
+/**
+ * Cards lado a lado: no celular a pessoa arrasta, no computador usa as setas ou as bolinhas.
+ * A rolagem e o encaixe de cada card são do próprio CSS (scroll-snap), sem biblioteca.
+ */
+export function Carousel({ children, labels, regionLabel }: { children: ReactNode; labels: CarouselLabels; regionLabel: string }) {
+  const items = Children.toArray(children);
+  const total = items.length;
+  const track = useRef<HTMLDivElement>(null);
+  const [nearest, setNearest] = useState(0);
+  const [atStart, setAtStart] = useState(true);
+  const [atEnd, setAtEnd] = useState(false);
+
+  useEffect(() => {
+    const el = track.current;
+    if (!el) return;
+    const update = () => {
+      const slides = Array.from(el.children) as HTMLElement[];
+      let best = 0;
+      slides.forEach((s, i) => {
+        if (Math.abs(s.offsetLeft - el.scrollLeft) < Math.abs(slides[best].offsetLeft - el.scrollLeft)) best = i;
+      });
+      setNearest(best);
+      setAtStart(el.scrollLeft <= 4);
+      setAtEnd(el.scrollLeft + el.clientWidth >= el.scrollWidth - 4);
+    };
+    update();
+    el.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      el.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, []);
+
+  const goTo = (i: number) => {
+    const el = track.current;
+    const slide = el?.children[Math.max(0, Math.min(total - 1, i))] as HTMLElement | undefined;
+    if (el && slide) el.scrollTo({ left: slide.offsetLeft, behavior: "smooth" });
+  };
+
+  // No fim da lista o último card pode nunca ficar "mais perto da esquerda"; aí a bolinha dele acende.
+  const active = atEnd ? total - 1 : nearest;
+  const arrow =
+    "grid size-11 place-items-center rounded-full border border-line text-fg transition hover:border-accent hover:text-accent disabled:pointer-events-none disabled:opacity-30";
+
+  return (
+    <div>
+      <div
+        ref={track}
+        role="region"
+        aria-roledescription="carousel"
+        aria-label={regionLabel}
+        tabIndex={0}
+        className="relative flex snap-x snap-mandatory gap-6 overflow-x-auto py-4 [scrollbar-width:none] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent [&::-webkit-scrollbar]:hidden"
+      >
+        {items.map((item, i) => (
+          <div
+            key={i}
+            role="group"
+            aria-roledescription="slide"
+            aria-label={`${i + 1} / ${total}`}
+            className="flex w-[88%] shrink-0 snap-start sm:w-[70%] md:w-[calc(50%-12px)] lg:w-[46%]"
+          >
+            {item}
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-6 flex items-center justify-center gap-5">
+        <button type="button" onClick={() => goTo(nearest - 1)} disabled={atStart} aria-label={labels.prev} title={labels.prev} className={arrow}>
+          <Chevron dir="left" />
+        </button>
+        <div className="flex items-center gap-2">
+          {items.map((_, i) => (
+            <button
+              key={i}
+              type="button"
+              onClick={() => goTo(i)}
+              aria-label={`${labels.goTo} ${i + 1}`}
+              aria-current={active === i}
+              className={`h-2 rounded-full transition-all duration-300 ${active === i ? "w-6 bg-accent" : "w-2 bg-line hover:bg-subtle"}`}
+            />
+          ))}
+        </div>
+        <button type="button" onClick={() => goTo(nearest + 1)} disabled={atEnd} aria-label={labels.next} title={labels.next} className={arrow}>
+          <Chevron dir="right" />
+        </button>
+      </div>
+      <p className="mt-3 text-xs text-subtle md:hidden">{labels.hint}</p>
+    </div>
+  );
 }

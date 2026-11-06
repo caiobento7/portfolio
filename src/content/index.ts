@@ -88,6 +88,7 @@ type Content = {
     building: string;
     scope: string;
     soon: string;
+    carousel: { prev: string; next: string; hint: string; goTo: string };
     knowledge: string;
     whatsappMsg: string;
     backToTop: string;
@@ -181,7 +182,7 @@ const pt: Content = {
   sections: {
     about: "Sobre mim",
     projects: "Projetos",
-    projectsIntro: "Trabalhos que foram para produção e resolveram um problema de verdade.",
+    projectsIntro: "Sistemas em produção que resolveram um problema de verdade e projetos próprios com código aberto.",
     experience: "Experiência",
     skills: "Stack",
     education: "Formação",
@@ -195,6 +196,7 @@ const pt: Content = {
     building: "Em construção",
     scope: "Escopo",
     soon: "Repositório e demo em breve",
+    carousel: { prev: "Projeto anterior", next: "Próximo projeto", hint: "Arraste para o lado para ver mais", goTo: "Ir para o projeto" },
     knowledge: "Conhecimentos",
     whatsappMsg: "Olá, Caio! Vim do seu portfólio e gostaria de conversar.",
     backToTop: "Voltar ao topo",
@@ -491,7 +493,7 @@ const en: Content = {
   sections: {
     about: "About me",
     projects: "Projects",
-    projectsIntro: "Work that went to production and solved a real problem.",
+    projectsIntro: "Production systems that solved a real problem, plus personal projects with open source code.",
     experience: "Experience",
     skills: "Stack",
     education: "Education",
@@ -505,6 +507,7 @@ const en: Content = {
     building: "In progress",
     scope: "Scope",
     soon: "Repository and demo coming soon",
+    carousel: { prev: "Previous project", next: "Next project", hint: "Swipe sideways to see more", goTo: "Go to project" },
     knowledge: "Skills",
     whatsappMsg: "Hi Caio! I found your portfolio and would like to talk.",
     backToTop: "Back to top",

@@ -297,11 +297,21 @@ export function Carousel({ children, labels, regionLabel }: { children: ReactNod
     };
   }, []);
 
+  // Card para onde a rolagem está indo: cliques seguidos somam, em vez de repetir o mesmo destino.
+  const target = useRef<number | null>(null);
+  const settle = useRef<ReturnType<typeof setTimeout>>(undefined);
+
   const goTo = (i: number) => {
     const el = track.current;
-    const slide = el?.children[Math.max(0, Math.min(total - 1, i))] as HTMLElement | undefined;
-    if (el && slide) el.scrollTo({ left: slide.offsetLeft, behavior: "smooth" });
+    const index = Math.max(0, Math.min(total - 1, i));
+    const slide = el?.children[index] as HTMLElement | undefined;
+    if (!el || !slide) return;
+    target.current = index;
+    clearTimeout(settle.current);
+    settle.current = setTimeout(() => (target.current = null), 700);
+    el.scrollTo({ left: slide.offsetLeft, behavior: "smooth" });
   };
+  const step = (dir: 1 | -1) => goTo((target.current ?? nearest) + dir);
 
   // No fim da lista o último card pode nunca ficar "mais perto da esquerda"; aí a bolinha dele acende.
   const active = atEnd ? total - 1 : nearest;
@@ -313,10 +323,10 @@ export function Carousel({ children, labels, regionLabel }: { children: ReactNod
 
   return (
     <div className="relative">
-      <button type="button" onClick={() => goTo(nearest - 1)} disabled={atStart} aria-label={labels.prev} title={labels.prev} className={`${sideArrow} -left-4 lg:-left-6`}>
+      <button type="button" onClick={() => step(-1)} disabled={atStart} aria-label={labels.prev} title={labels.prev} className={`${sideArrow} -left-4 lg:-left-6`}>
         <Chevron dir="left" />
       </button>
-      <button type="button" onClick={() => goTo(nearest + 1)} disabled={atEnd} aria-label={labels.next} title={labels.next} className={`${sideArrow} -right-4 lg:-right-6`}>
+      <button type="button" onClick={() => step(1)} disabled={atEnd} aria-label={labels.next} title={labels.next} className={`${sideArrow} -right-4 lg:-right-6`}>
         <Chevron dir="right" />
       </button>
       <div
@@ -341,7 +351,7 @@ export function Carousel({ children, labels, regionLabel }: { children: ReactNod
       </div>
 
       <div className="mt-6 flex items-center justify-center gap-5">
-        <button type="button" onClick={() => goTo(nearest - 1)} disabled={atStart} aria-label={labels.prev} title={labels.prev} className={`${arrow} md:hidden`}>
+        <button type="button" onClick={() => step(-1)} disabled={atStart} aria-label={labels.prev} title={labels.prev} className={`${arrow} md:hidden`}>
           <Chevron dir="left" />
         </button>
         <div className="flex items-center gap-2">
@@ -356,7 +366,7 @@ export function Carousel({ children, labels, regionLabel }: { children: ReactNod
             />
           ))}
         </div>
-        <button type="button" onClick={() => goTo(nearest + 1)} disabled={atEnd} aria-label={labels.next} title={labels.next} className={`${arrow} md:hidden`}>
+        <button type="button" onClick={() => step(1)} disabled={atEnd} aria-label={labels.next} title={labels.next} className={`${arrow} md:hidden`}>
           <Chevron dir="right" />
         </button>
       </div>

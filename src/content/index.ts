@@ -384,7 +384,6 @@ const pt: Content = {
         "Plataforma com gestão de fluxos de produção de conteúdo (Liviu Flow), criação colaborativa com exportação SCORM (Liviu Content), análise de jornada e desempenho (Liviu Analytics) e recursos de IA para revisão de textos e geração de imagens",
         "Interfaces web com React, Next.js e TypeScript, integradas a APIs e serviços backend",
         "Implementação de funcionalidades e melhorias em sistemas em produção, em time ágil com Scrum, Git e versionamento colaborativo",
-        "Suporte remoto a usuários via AnyDesk e TeamViewer",
       ],
     },
     {
@@ -399,7 +398,6 @@ const pt: Content = {
         "Criou um sistema de alertas para monitorar desconexões de ferramentas, prevenindo falhas que comprometeriam a integridade do banco em produção",
         "Dashboards e funcionalidades para aplicações web internas, integrando frontend a APIs e serviços backend",
         "Time ágil com Scrum em sprints semanais, com Git e versionamento colaborativo",
-        "Suporte remoto a usuários via AnyDesk e TeamViewer",
       ],
     },
     {
@@ -412,6 +410,7 @@ const pt: Content = {
         "Scripts e automações em Python e SQL para otimizar processos internos",
         "Criação e manutenção de integrações entre sistemas e APIs para processamento de dados",
         "Colaboração em soluções de análise e manipulação de dados da plataforma",
+        "Suporte remoto a usuários via AnyDesk e TeamViewer",
       ],
     },
   ],
@@ -699,7 +698,6 @@ const en: Content = {
         "The platform covers content production workflows (Liviu Flow), collaborative authoring with SCORM export (Liviu Content), learner journey and performance analytics (Liviu Analytics) and AI features for text review and image generation",
         "Web interfaces with React, Next.js and TypeScript, integrated with APIs and backend services",
         "Shipped features and improvements to production systems in an agile Scrum team, using Git and a collaborative workflow",
-        "Remote user support via AnyDesk and TeamViewer",
       ],
     },
     {
@@ -714,7 +712,6 @@ const en: Content = {
         "Built an alerting system that monitors tool disconnections, preventing failures that would compromise the production database",
         "Dashboards and features for internal web apps, wiring the frontend to APIs and backend services",
         "Agile Scrum team with weekly sprints, Git and a collaborative workflow",
-        "Remote user support via AnyDesk and TeamViewer",
       ],
     },
     {
@@ -727,6 +724,7 @@ const en: Content = {
         "Python and SQL scripts and automations to streamline internal processes",
         "Built and maintained integrations between systems and APIs for data processing",
         "Collaborated on data analysis and data handling solutions for the platform",
+        "Remote user support via AnyDesk and TeamViewer",
       ],
     },
   ],

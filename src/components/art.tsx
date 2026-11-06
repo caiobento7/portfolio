@@ -240,10 +240,102 @@ function ScormMockup({ lang }: { lang: Locale }) {
   );
 }
 
+const pixText = {
+  pt: { charge: "Cobrança", paid: "PAGA", log: "webhook · log", recon: "conciliação" },
+  en: { charge: "Charge", paid: "PAID", log: "webhook · log", recon: "reconciliation" },
+};
+
+/** Tela ilustrativa da API Pix: o mesmo webhook chegando várias vezes e uma única baixa. */
+function PixMockup({ lang }: { lang: Locale }) {
+  const m = pixText[lang];
+  return (
+    <div className="relative flex h-full w-full items-center justify-center gap-3 overflow-hidden bg-gradient-to-br from-[#32bcad]/40 to-[#0b0b0b] to-75% px-4 text-left">
+      <div className="w-[78%] overflow-hidden rounded-lg border border-white/10 bg-[#0f1115] shadow-xl shadow-black/50 sm:w-[56%]">
+        <div className="flex items-center justify-between border-b border-white/10 px-3 py-1.5">
+          <span className="font-mono text-[9px] text-white/60">{m.log}</span>
+          <span className="size-1.5 animate-pulse rounded-full bg-accent" />
+        </div>
+        <ul className="space-y-1 p-3 font-mono text-[9px] leading-tight text-white/70">
+          <li>
+            POST /webhooks/pix <span className="text-accent">APLICADO</span>
+          </li>
+          <li>
+            POST /webhooks/pix <span className="text-[#e5c07b]">DUPLICADO</span>
+          </li>
+          <li>
+            POST /webhooks/pix <span className="text-[#e5c07b]">DUPLICADO</span>
+          </li>
+          <li className="text-white/40">… ×5</li>
+          <li>
+            {m.recon} <span className="text-[#e5c07b]">DUPLICADO</span>
+          </li>
+        </ul>
+      </div>
+      <div className="hidden w-[34%] rounded-xl bg-white p-3 shadow-2xl shadow-black/50 sm:block">
+        <p className="text-[9px] font-medium uppercase tracking-wider text-black/45">{m.charge} Pix</p>
+        <p className="mt-1 text-lg font-bold leading-none text-[#111]">R$ 25,90</p>
+        <span className="mt-2.5 inline-block rounded-full bg-[#32bcad]/15 px-2 py-0.5 text-[9px] font-bold text-[#1f8a7e]">
+          ✓ {m.paid}
+        </span>
+        <p className="mt-2.5 truncate font-mono text-[8px] text-black/40">E00000000202611…</p>
+      </div>
+    </div>
+  );
+}
+
+const cliText = {
+  pt: { total: "Duração mínima: 7 dias", path: "Caminho crítico:", slack: "folga" },
+  en: { total: "Minimum duration: 7 days", path: "Critical path:", slack: "slack" },
+};
+
+/** Tela ilustrativa da ferramenta de caminho crítico rodando no terminal. */
+function CliMockup({ lang }: { lang: Locale }) {
+  const m = cliText[lang];
+  const rows: [string, string, boolean][] = [
+    ["A", "0", true],
+    ["B", "1", false],
+    ["C", "0", true],
+    ["D", "0", true],
+  ];
+  return (
+    <div className="relative flex h-full w-full items-center justify-center overflow-hidden bg-gradient-to-br from-[#8b5cf6]/40 to-[#0b0b0b] to-75% px-4 text-left">
+      <div className="w-[86%] max-w-[340px] overflow-hidden rounded-lg border border-white/10 bg-[#0f1115] shadow-xl shadow-black/50">
+        <div className="flex gap-1.5 border-b border-white/10 px-3 py-2">
+          <span className="size-2 rounded-full bg-[#ff5f57]" />
+          <span className="size-2 rounded-full bg-[#febc2e]" />
+          <span className="size-2 rounded-full bg-[#28c840]" />
+        </div>
+        <div className="space-y-1 p-3 font-mono text-[9.5px] leading-tight text-white/70">
+          <p>
+            <span className="text-accent">$</span> node src/cli.ts manutencao.json
+          </p>
+          <p className="text-white">{m.total}</p>
+          <p>
+            {m.path} <span className="text-[#e5c07b]">A → C → D</span>
+          </p>
+          <div className="mt-1.5 grid grid-cols-3 gap-x-2 gap-y-0.5 text-white/55">
+            {rows.map(([id, folga, critica]) => (
+              <span key={id} className="contents">
+                <span>{id}</span>
+                <span>
+                  {m.slack} {folga}
+                </span>
+                <span className={critica ? "text-[#e06c75]" : ""}>{critica ? "●" : "○"}</span>
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /** Capa desenhada para projetos sem print público (código de empresa ou projeto em andamento). */
 export function ProjectCover({ project, lang }: { project: Project; lang: Locale }) {
   if (project.cover === "booking") return <BookingMockup lang={lang} />;
   if (project.cover === "scorm") return <ScormMockup lang={lang} />;
+  if (project.cover === "pix") return <PixMockup lang={lang} />;
+  if (project.cover === "cli") return <CliMockup lang={lang} />;
   const s = coverStyle[project.cover];
   return (
     <div

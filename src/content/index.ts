@@ -30,7 +30,7 @@ export type Project = {
   bullets: string[];
   impact: string;
   stack: string[];
-  cover: "whatsapp" | "web" | "ticket" | "database" | "booking" | "scorm";
+  cover: "whatsapp" | "web" | "ticket" | "database" | "booking" | "scorm" | "pix" | "cli";
   /** "building": projeto em desenvolvimento. Mostra o selo e o escopo e fica fora do currículo. */
   status?: "building";
   image?: string;
@@ -253,6 +253,23 @@ const pt: Content = {
       repo: { href: "https://github.com/caiobento7/plataforma_cursos", label: "Ver código" },
     },
     {
+      slug: "pix-cobrancas",
+      cover: "pix",
+      name: "Cobranças Pix com webhook idempotente",
+      context: "Projeto pessoal · Java e Spring Boot",
+      summary:
+        "API que cria cobranças Pix e dá baixa quando o pagamento cai, sem nunca contar o mesmo Pix duas vezes, mesmo com o webhook do banco chegando repetido, fora de ordem ou se perdendo.",
+      bullets: [
+        "Idempotência garantida pelo banco: chave primária no endToEndId e trava otimista na cobrança",
+        "Conciliação agendada que consulta o PSP, acha o pagamento cujo webhook se perdeu e expira cobranças vencidas",
+        "Devoluções parciais seguras para repetir, valores em BigDecimal e erros no padrão Problem Details",
+        "Migrações com Flyway, Docker Compose e CI que roda os testes em H2 e em PostgreSQL de verdade",
+      ],
+      impact: "41 testes em JUnit 5, incluindo 8 webhooks simultâneos do mesmo Pix que resultam em uma única baixa.",
+      stack: ["Java 21", "Spring Boot", "PostgreSQL", "Flyway", "JUnit 5", "Docker", "GitHub Actions"],
+      repo: { href: "https://github.com/caiobento7/pix-cobrancas", label: "Ver código" },
+    },
+    {
       slug: "suporte",
       cover: "ticket",
       name: "Central de suporte com Slack e Jira",
@@ -330,6 +347,22 @@ const pt: Content = {
       ],
       impact: "100% dos dados migrados com zero intervenção manual.",
       stack: ["n8n", "WooCommerce API", "Supabase", "PostgreSQL", "REST APIs"],
+    },
+    {
+      slug: "caminho-critico",
+      cover: "cli",
+      name: "Caminho crítico: prazo mínimo de um projeto",
+      context: "Projeto pessoal · TypeScript e linha de comando",
+      summary:
+        "Ferramenta de linha de comando que lê uma lista de tarefas com dependências e mostra a duração mínima do projeto e quais tarefas não podem atrasar, pelo método do caminho crítico (CPM).",
+      bullets: [
+        "Ordenação topológica (algoritmo de Kahn) com cálculo de início, fim e folga de cada tarefa",
+        "Lê JSON ou a planilha exportada do Excel em português, com ponto e vírgula e vírgula decimal",
+        "Recusa ciclos, ids repetidos e dependências inexistentes com mensagens que dizem o que corrigir",
+      ],
+      impact: "23 testes em Vitest e CI no GitHub Actions, rodando TypeScript direto no Node 24, sem etapa de build.",
+      stack: ["TypeScript", "Node.js", "Vitest", "GitHub Actions"],
+      repo: { href: "https://github.com/caiobento7/caminho-critico", label: "Ver código" },
     },
   ],
   jobs: [
@@ -530,6 +563,23 @@ const en: Content = {
       repo: { href: "https://github.com/caiobento7/plataforma_cursos", label: "View code" },
     },
     {
+      slug: "pix-cobrancas",
+      cover: "pix",
+      name: "Pix charges with an idempotent webhook",
+      context: "Personal project · Java and Spring Boot",
+      summary:
+        "An API that creates Pix charges (Brazil's instant payments) and settles them when the money arrives, never counting the same payment twice, even when the bank's webhook is repeated, out of order or lost.",
+      bullets: [
+        "Idempotency enforced by the database: endToEndId as primary key and optimistic locking on the charge",
+        "Scheduled reconciliation that queries the provider, finds payments whose webhook was lost and expires overdue charges",
+        "Partial refunds that are safe to retry, money as BigDecimal and Problem Details errors",
+        "Flyway migrations, Docker Compose and CI that runs the tests on H2 and on a real PostgreSQL",
+      ],
+      impact: "41 JUnit 5 tests, including 8 simultaneous webhooks for the same payment that settle the charge only once.",
+      stack: ["Java 21", "Spring Boot", "PostgreSQL", "Flyway", "JUnit 5", "Docker", "GitHub Actions"],
+      repo: { href: "https://github.com/caiobento7/pix-cobrancas", label: "View code" },
+    },
+    {
       slug: "suporte",
       cover: "ticket",
       name: "Support hub with Slack and Jira",
@@ -607,6 +657,22 @@ const en: Content = {
       ],
       impact: "100% of the data migrated with zero manual intervention.",
       stack: ["n8n", "WooCommerce API", "Supabase", "PostgreSQL", "REST APIs"],
+    },
+    {
+      slug: "caminho-critico",
+      cover: "cli",
+      name: "Critical path: a project's shortest schedule",
+      context: "Personal project · TypeScript CLI",
+      summary:
+        "A command-line tool that reads a list of tasks with dependencies and shows the project's minimum duration and which tasks cannot slip, using the critical path method (CPM).",
+      bullets: [
+        "Topological sort (Kahn's algorithm) with start, finish and slack for every task",
+        "Reads JSON or a spreadsheet exported from Excel, including Brazilian CSV with semicolons and decimal commas",
+        "Rejects cycles, duplicate ids and missing dependencies with messages that say what to fix",
+      ],
+      impact: "23 Vitest tests and CI on GitHub Actions, running TypeScript directly on Node 24 with no build step.",
+      stack: ["TypeScript", "Node.js", "Vitest", "GitHub Actions"],
+      repo: { href: "https://github.com/caiobento7/caminho-critico", label: "View code" },
     },
   ],
   jobs: [

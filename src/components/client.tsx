@@ -307,9 +307,18 @@ export function Carousel({ children, labels, regionLabel }: { children: ReactNod
   const active = atEnd ? total - 1 : nearest;
   const arrow =
     "grid size-11 place-items-center rounded-full border border-line text-fg transition hover:border-accent hover:text-accent disabled:pointer-events-none disabled:opacity-30";
+  // Setas nas laterais, na altura da capa: dá para passar de projeto sem descer até o fim dos cards.
+  const sideArrow =
+    "absolute top-[14rem] z-10 hidden size-12 -translate-y-1/2 place-items-center rounded-full border border-line bg-card/90 text-fg shadow-lg backdrop-blur transition hover:border-accent hover:text-accent disabled:pointer-events-none disabled:opacity-0 md:grid";
 
   return (
-    <div>
+    <div className="relative">
+      <button type="button" onClick={() => goTo(nearest - 1)} disabled={atStart} aria-label={labels.prev} title={labels.prev} className={`${sideArrow} -left-4 lg:-left-6`}>
+        <Chevron dir="left" />
+      </button>
+      <button type="button" onClick={() => goTo(nearest + 1)} disabled={atEnd} aria-label={labels.next} title={labels.next} className={`${sideArrow} -right-4 lg:-right-6`}>
+        <Chevron dir="right" />
+      </button>
       <div
         ref={track}
         role="region"
@@ -332,7 +341,7 @@ export function Carousel({ children, labels, regionLabel }: { children: ReactNod
       </div>
 
       <div className="mt-6 flex items-center justify-center gap-5">
-        <button type="button" onClick={() => goTo(nearest - 1)} disabled={atStart} aria-label={labels.prev} title={labels.prev} className={arrow}>
+        <button type="button" onClick={() => goTo(nearest - 1)} disabled={atStart} aria-label={labels.prev} title={labels.prev} className={`${arrow} md:hidden`}>
           <Chevron dir="left" />
         </button>
         <div className="flex items-center gap-2">
@@ -347,7 +356,7 @@ export function Carousel({ children, labels, regionLabel }: { children: ReactNod
             />
           ))}
         </div>
-        <button type="button" onClick={() => goTo(nearest + 1)} disabled={atEnd} aria-label={labels.next} title={labels.next} className={arrow}>
+        <button type="button" onClick={() => goTo(nearest + 1)} disabled={atEnd} aria-label={labels.next} title={labels.next} className={`${arrow} md:hidden`}>
           <Chevron dir="right" />
         </button>
       </div>

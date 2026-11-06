@@ -258,7 +258,6 @@ const pt: Content = {
     {
       slug: "hub-integracoes",
       cover: "fila",
-      foraDoCurriculo: true,
       name: "Hub de integrações com fila e reprocessamento",
       context: "Projeto pessoal · Java, Spring Boot e RabbitMQ",
       summary:
@@ -342,6 +341,7 @@ const pt: Content = {
     },
     {
       slug: "suporte",
+      foraDoCurriculo: true,
       cover: "ticket",
       name: "Central de suporte com Slack e Jira",
       context: "Nexly Group",
@@ -573,7 +573,6 @@ const en: Content = {
     {
       slug: "hub-integracoes",
       cover: "fila",
-      foraDoCurriculo: true,
       name: "Integration hub with a queue and replay",
       context: "Personal project · Java, Spring Boot and RabbitMQ",
       summary:
@@ -657,6 +656,7 @@ const en: Content = {
     },
     {
       slug: "suporte",
+      foraDoCurriculo: true,
       cover: "ticket",
       name: "Support hub with Slack and Jira",
       context: "Nexly Group",

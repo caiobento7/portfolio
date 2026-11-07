@@ -155,7 +155,7 @@ const pt: Content = {
       "Desenvolvo aplicações web de ponta a ponta com React, Next.js, TypeScript e Node.js. Na minha experiência mais recente, na Adapt Edtech, construí plataformas de educação usadas por instituições de ensino e empresas.",
     now: "Experiência mais recente",
     nowRole: "Full Stack na Adapt Edtech",
-    before: "Antes: Nexly Group e Pixtrade.IO",
+    before: "Antes: Nexly Group, Pixtrade.IO e freelance na Upwork",
     stackLabel: "Stack principal",
     stack: ["React", "Next.js", "TypeScript", "Node.js", "PostgreSQL", "Supabase", "Python"],
     code: {
@@ -235,6 +235,7 @@ const pt: Content = {
     { year: "2026", role: "Full Stack Developer", org: "Adapt Edtech" },
     { year: "2025", role: "Full Stack Developer & Automation", org: "Nexly Group Solutions" },
     { year: "2024", role: "Software Developer Trainee", org: "Pixtrade.IO" },
+    { year: "2023", role: "Desenvolvedor Full Stack Freelance", org: "Upwork" },
     { year: "2023", role: "Engenharia da Computação", org: "UERJ" },
   ],
   projects: [
@@ -431,6 +432,16 @@ const pt: Content = {
         "Suporte remoto a usuários via AnyDesk e TeamViewer",
       ],
     },
+    {
+      company: "Upwork",
+      role: "Desenvolvedor Full Stack (Freelance)",
+      period: "Dez 2023 – Abr 2024",
+      mode: "Remoto",
+      bullets: [
+        "Desenvolvimento de pequenas aplicações web para clientes, de ponta a ponta: levantamento de requisitos, definição de escopo, desenvolvimento e entrega final",
+        "Responsável pelas decisões técnicas e pela comunicação direta com o cliente ao longo de todo o projeto",
+      ],
+    },
   ],
   skills: [
     { group: "Frontend", icon: "code", desc: "Interfaces responsivas e rápidas para produtos B2B em produção, do layout ao estado da aplicação.", items: ["React", "Next.js", "TypeScript", "JavaScript", "HTML", "CSS", "Angular", "TailwindCSS"] },
@@ -487,7 +498,7 @@ const en: Content = {
       "I build web applications end to end with React, Next.js, TypeScript and Node.js. Most recently, at Adapt Edtech, I built education platforms used by schools and companies.",
     now: "Most recent role",
     nowRole: "Full Stack at Adapt Edtech",
-    before: "Before: Nexly Group and Pixtrade.IO",
+    before: "Before: Nexly Group, Pixtrade.IO and freelancing on Upwork",
     stackLabel: "Main stack",
     stack: ["React", "Next.js", "TypeScript", "Node.js", "PostgreSQL", "Supabase", "Python"],
     code: {
@@ -567,6 +578,7 @@ const en: Content = {
     { year: "2026", role: "Full Stack Developer", org: "Adapt Edtech" },
     { year: "2025", role: "Full Stack Developer & Automation", org: "Nexly Group Solutions" },
     { year: "2024", role: "Software Developer Trainee", org: "Pixtrade.IO" },
+    { year: "2023", role: "Freelance Full Stack Developer", org: "Upwork" },
     { year: "2023", role: "Computer Engineering", org: "UERJ" },
   ],
   projects: [
@@ -761,6 +773,16 @@ const en: Content = {
         "Built and maintained integrations between systems and APIs for data processing",
         "Collaborated on data analysis and data handling solutions for the platform",
         "Remote user support via AnyDesk and TeamViewer",
+      ],
+    },
+    {
+      company: "Upwork",
+      role: "Full Stack Developer (Freelance)",
+      period: "Dec 2023 – Apr 2024",
+      mode: "Remote",
+      bullets: [
+        "Built small web applications for clients end to end: requirements gathering, scoping, development and final delivery",
+        "Owned the technical decisions and the direct communication with the client throughout each project",
       ],
     },
   ],

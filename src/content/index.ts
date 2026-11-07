@@ -240,6 +240,25 @@ const pt: Content = {
   ],
   projects: [
     {
+      slug: "liviu",
+      foraDoCurriculo: true,
+      cover: "web",
+      image: "/projects/liviu.jpg",
+      name: "Adapt Liviu: plataforma de educação corporativa",
+      context: "Adapt Edtech · Full stack, junto com o time",
+      summary:
+        "Plataforma em que empresas e instituições de ensino criam, organizam e distribuem cursos para os colaboradores e alunos. Construí a plataforma junto com o time, do cadastro de empresas e alunos ao editor de cursos e à exportação SCORM.",
+      bullets: [
+        "Cadastro de empresas e alunos, com acesso pelo e-mail da empresa e interface em português, inglês e espanhol",
+        "Editor visual de cursos no estilo Canva, para montar o conteúdo sem precisar de código",
+        "Rotas de aprendizagem que organizam os cursos na sequência certa para cada público",
+        "Importação e exportação de pacotes SCORM, para levar os cursos para outros LMS",
+      ],
+      impact: "Plataforma em produção, usada por instituições de ensino e áreas de T&D corporativo.",
+      stack: ["Next.js", "React", "TypeScript", "SCORM"],
+      link: { href: "https://adaptedtech.com.br", label: "Ver site da Adapt" },
+    },
+    {
       slug: "agenda",
       cover: "booking",
       name: "Agenda: SaaS de agendamento com Pix",
@@ -324,6 +343,24 @@ const pt: Content = {
       stack: ["n8n", "WhatsApp Business API", "WooCommerce API", "Webhooks", "Supabase", "PostgreSQL"],
     },
     {
+      slug: "famath",
+      foraDoCurriculo: true,
+      cover: "web",
+      image: "/projects/famath.jpg",
+      name: "FAMATH: site e plataforma de matrícula",
+      context: "Faculdade Maria Thereza · Nexly Group",
+      summary:
+        "Site institucional da Faculdade Maria Thereza, com os cursos de graduação e pós, as formas de ingresso e as inscrições do vestibular, e a plataforma em que o candidato faz e acompanha a própria matrícula.",
+      bullets: [
+        "Páginas de cursos, formas de ingresso e chamadas para a inscrição no vestibular",
+        "Plataforma de matrícula online, em que o candidato envia os dados e acompanha o andamento",
+        "Site ligado à plataforma de matrícula e à área do aluno",
+      ],
+      impact: "Site no ar, recebendo as inscrições do vestibular 2027.1.",
+      stack: ["WordPress", "Next.js", "Vercel"],
+      link: { href: "https://mariathereza.com.br", label: "Ver site no ar" },
+    },
+    {
       slug: "cursolab",
       foraDoCurriculo: true,
       cover: "web",
@@ -400,7 +437,7 @@ const pt: Content = {
       mode: "Remoto",
       bullets: [
         "Desenvolvimento do Adapt Liviu, ecossistema de tecnologia educacional para criação, gestão e análise de conteúdo, usado por instituições de ensino e áreas de T&D corporativo, e do Liviu Hub, plataforma de educação corporativa da empresa",
-        "Plataforma com gestão de fluxos de produção de conteúdo (Liviu Flow), criação colaborativa com exportação SCORM (Liviu Content), análise de jornada e desempenho (Liviu Analytics) e recursos de IA para revisão de textos e geração de imagens",
+        "Construção, junto com o time, das funcionalidades centrais da plataforma: cadastro de empresas e alunos, editor visual de cursos no estilo Canva, rotas de aprendizagem, importação e exportação de pacotes SCORM e recursos de IA para revisão de textos e geração de imagens",
         "Interfaces web com React, Next.js e TypeScript, integradas a APIs e serviços backend",
         "Implementação de funcionalidades e melhorias em sistemas em produção, em time ágil com Scrum, Git e versionamento colaborativo",
       ],
@@ -411,7 +448,7 @@ const pt: Content = {
       period: "Jul 2025 – Ago 2026",
       mode: "Remoto",
       bullets: [
-        "Responsável por todas as interfaces frontend da empresa, com aplicações web em React, Next.js e TypeScript para produtos B2B em produção",
+        "Responsável por todas as interfaces frontend da empresa, com aplicações web em React, Next.js e TypeScript para produtos B2B em produção, além do site e da plataforma de matrícula online da Faculdade Maria Thereza (FAMATH)",
         "Idealizou e desenvolveu a Silvinha, agente de IA da Silva Nutrition e primeira IA de vendas e suporte da empresa, operando via WhatsApp com integrações WooCommerce via API REST e Webhooks",
         "Projetou e implementou mais de 10 automações críticas com n8n, incluindo a migração de mais de 100.000 registros do WooCommerce para o Supabase num único fluxo otimizado",
         "Criou um sistema de alertas para monitorar desconexões de ferramentas, prevenindo falhas que comprometeriam a integridade do banco em produção",
@@ -583,6 +620,25 @@ const en: Content = {
   ],
   projects: [
     {
+      slug: "liviu",
+      foraDoCurriculo: true,
+      cover: "web",
+      image: "/projects/liviu.jpg",
+      name: "Adapt Liviu: corporate learning platform",
+      context: "Adapt Edtech · Full stack, with the team",
+      summary:
+        "A platform where companies and schools create, organize and deliver courses to their employees and students. I built it with the team, from company and student sign-up to the course editor and SCORM export.",
+      bullets: [
+        "Company and student sign-up, with access through the company email and a UI in Portuguese, English and Spanish",
+        "Canva-style visual course editor, so content is built without writing code",
+        "Learning paths that put courses in the right order for each audience",
+        "SCORM package import and export, to take courses to other LMSs",
+      ],
+      impact: "In production, used by schools and corporate L&D teams.",
+      stack: ["Next.js", "React", "TypeScript", "SCORM"],
+      link: { href: "https://adaptedtech.com.br", label: "Visit Adapt's site" },
+    },
+    {
       slug: "agenda",
       cover: "booking",
       name: "Agenda: booking SaaS with Pix payments",
@@ -667,6 +723,24 @@ const en: Content = {
       stack: ["n8n", "WhatsApp Business API", "WooCommerce API", "Webhooks", "Supabase", "PostgreSQL"],
     },
     {
+      slug: "famath",
+      foraDoCurriculo: true,
+      cover: "web",
+      image: "/projects/famath.jpg",
+      name: "FAMATH: college website and enrollment platform",
+      context: "Faculdade Maria Thereza · Nexly Group",
+      summary:
+        "The website of Faculdade Maria Thereza, a college in Brazil, with its undergraduate and graduate programs, admission options and entrance exam sign-ups, plus the platform where applicants enroll and track their enrollment.",
+      bullets: [
+        "Program pages, admission options and calls to sign up for the entrance exam",
+        "Online enrollment platform where applicants submit their details and track progress",
+        "Website connected to the enrollment platform and the student area",
+      ],
+      impact: "Live and taking sign-ups for the 2027.1 entrance exam.",
+      stack: ["WordPress", "Next.js", "Vercel"],
+      link: { href: "https://mariathereza.com.br", label: "Visit live site" },
+    },
+    {
       slug: "cursolab",
       foraDoCurriculo: true,
       cover: "web",
@@ -743,7 +817,7 @@ const en: Content = {
       mode: "Remote",
       bullets: [
         "Built Adapt Liviu, an education technology ecosystem for creating, managing and analyzing content, used by schools and corporate L&D teams, and Liviu Hub, the company's corporate learning platform",
-        "The platform covers content production workflows (Liviu Flow), collaborative authoring with SCORM export (Liviu Content), learner journey and performance analytics (Liviu Analytics) and AI features for text review and image generation",
+        "Built the platform's core features with the team: company and student sign-up, a Canva-style visual course editor, learning paths, SCORM package import and export, and AI features for text review and image generation",
         "Web interfaces with React, Next.js and TypeScript, integrated with APIs and backend services",
         "Shipped features and improvements to production systems in an agile Scrum team, using Git and a collaborative workflow",
       ],
@@ -754,7 +828,7 @@ const en: Content = {
       period: "Jul 2025 – Aug 2026",
       mode: "Remote",
       bullets: [
-        "Owned every frontend interface in the company, building React, Next.js and TypeScript web apps for B2B products in production",
+        "Owned every frontend interface in the company, building React, Next.js and TypeScript web apps for B2B products in production, plus the website and online enrollment platform of Faculdade Maria Thereza (FAMATH)",
         "Designed and built Silvinha, Silva Nutrition's AI agent and the company's first sales and support AI, running on WhatsApp with WooCommerce integrations through REST APIs and webhooks",
         "Designed and shipped 10+ critical n8n automations, including the migration of 100,000+ records from WooCommerce to Supabase in a single optimized workflow",
         "Built an alerting system that monitors tool disconnections, preventing failures that would compromise the production database",

@@ -30,7 +30,7 @@ export type Project = {
   bullets: string[];
   impact: string;
   stack: string[];
-  cover: "whatsapp" | "web" | "ticket" | "database" | "booking" | "pix" | "cli" | "fila";
+  cover: "whatsapp" | "web" | "ticket" | "database" | "booking" | "pix" | "cli" | "fila" | "docs";
   /** "building": projeto em desenvolvimento. Mostra o selo e o escopo e fica fora do currículo. */
   status?: "building";
   /** Fica só no portfólio, fora do currículo (já citado na experiência, ou menor), para o PDF caber em 2 páginas. */
@@ -256,6 +256,23 @@ const pt: Content = {
       repo: { href: "https://github.com/caiobento7/agenda", label: "Ver código" },
     },
     {
+      slug: "assistente-documentos",
+      cover: "docs",
+      name: "Assistente de documentos com IA e citações",
+      context: "Projeto pessoal · Python, IA e busca híbrida",
+      summary:
+        "Pergunte em português sobre os documentos da empresa (manual, políticas, FAQ) e receba a resposta do Claude com a página e a frase exata de onde ela saiu. Sem trecho encontrado, a IA nem é chamada e o sistema diz que não sabe.",
+      bullets: [
+        "Busca híbrida: texto em português (tsvector) e significado (pgvector), unidas por Reciprocal Rank Fusion",
+        "Citações nativas da API do Claude: cada trecho vai como search_result e a fonte mostrada é sempre um trecho que de fato foi enviado",
+        "Avaliação automática no CI com 26 perguntas de gabarito, que falha se a qualidade da busca cair",
+        "Upload de PDF, Markdown e texto, com documento repetido detectado por SHA-256 e modo demonstração sem chave de API",
+      ],
+      impact: "Busca híbrida com 100% de recall@3 nas perguntas de gabarito e 47 testes em pytest, rodando em memória e em PostgreSQL com pgvector no CI.",
+      stack: ["Python", "FastAPI", "PostgreSQL", "pgvector", "API do Claude", "Voyage AI", "pytest", "Docker"],
+      repo: { href: "https://github.com/caiobento7/assistente-documentos", label: "Ver código" },
+    },
+    {
       slug: "hub-integracoes",
       cover: "fila",
       name: "Hub de integrações com fila e reprocessamento",
@@ -307,6 +324,7 @@ const pt: Content = {
     },
     {
       slug: "cursolab",
+      foraDoCurriculo: true,
       cover: "web",
       image: "/projects/cursolab.png",
       name: "CursoLab: plataforma de cursos online",
@@ -416,10 +434,10 @@ const pt: Content = {
   ],
   skills: [
     { group: "Frontend", icon: "code", desc: "Interfaces responsivas e rápidas para produtos B2B em produção, do layout ao estado da aplicação.", items: ["React", "Next.js", "TypeScript", "JavaScript", "HTML", "CSS", "Angular", "TailwindCSS"] },
-    { group: "Backend & APIs", icon: "server", desc: "APIs REST, webhooks e bancos relacionais, com regra de negócio e controle de acesso no servidor.", items: ["Node.js", "Python", "REST APIs", "Webhooks", "Supabase", "PostgreSQL", "SQL"] },
+    { group: "Backend & APIs", icon: "server", desc: "APIs REST, webhooks e bancos relacionais, com regra de negócio e controle de acesso no servidor.", items: ["Node.js", "Python", "FastAPI", "REST APIs", "Webhooks", "Supabase", "PostgreSQL", "SQL"] },
     { group: "Dados", icon: "database", desc: "Migrações em larga escala e ETL com validação de integridade do começo ao fim.", items: ["Migração em larga escala", "ETL com n8n", "PostgreSQL", "Apache Beam", "WooCommerce API"] },
     { group: "Ferramentas & Processo", icon: "git", desc: "Versionamento colaborativo, containers, deploy contínuo e sprints com Scrum no dia a dia do time.", items: ["Git", "GitHub", "Docker", "Vercel", "Google Cloud (GCP)", "Scrum", "Metodologias ágeis"] },
-    { group: "Automação & IA", icon: "bot", desc: "Fluxos em n8n e agentes de IA que vendem, atendem e conectam sistemas sem trabalho manual.", items: ["n8n", "Agentes de IA conversacionais", "LLMs em fluxos de negócio", "WhatsApp Business API"] },
+    { group: "Automação & IA", icon: "bot", desc: "Fluxos em n8n e agentes de IA que vendem, atendem e conectam sistemas sem trabalho manual.", items: ["n8n", "Agentes de IA conversacionais", "LLMs em fluxos de negócio", "RAG com pgvector", "API do Claude", "WhatsApp Business API"] },
     { group: "Automação web", icon: "globe", desc: "Scripts que navegam, extraem e preenchem páginas web de forma confiável.", items: ["Python", "Selenium", "Playwright", "requests"] },
     { group: "Infra & Suporte", icon: "support", desc: "Suporte remoto a usuários e configuração de máquinas e ambientes.", items: ["AnyDesk", "TeamViewer", "Máquinas virtuais", "Active Directory (noções)"] },
   ],
@@ -570,6 +588,23 @@ const en: Content = {
       repo: { href: "https://github.com/caiobento7/agenda", label: "View code" },
     },
     {
+      slug: "assistente-documentos",
+      cover: "docs",
+      name: "AI document assistant with citations",
+      context: "Personal project · Python, AI and hybrid search",
+      summary:
+        "Ask questions about company documents (handbook, policies, FAQ) and get Claude's answer with the exact page and sentence it came from. When nothing relevant is found, the model is not even called and the app says it doesn't know.",
+      bullets: [
+        "Hybrid search: Portuguese full-text (tsvector) plus semantic search (pgvector), merged with Reciprocal Rank Fusion",
+        "Native Claude API citations: every chunk is sent as a search_result, so each source shown is a chunk that was actually sent",
+        "Automated evaluation in CI with 26 gold questions that fails the build if search quality drops",
+        "PDF, Markdown and text uploads, duplicate detection by SHA-256 and a demo mode that runs with no API key",
+      ],
+      impact: "Hybrid search reaches 100% recall@3 on the gold questions, with 47 pytest tests running in memory and on PostgreSQL with pgvector in CI.",
+      stack: ["Python", "FastAPI", "PostgreSQL", "pgvector", "Claude API", "Voyage AI", "pytest", "Docker"],
+      repo: { href: "https://github.com/caiobento7/assistente-documentos", label: "View code" },
+    },
+    {
       slug: "hub-integracoes",
       cover: "fila",
       name: "Integration hub with a queue and replay",
@@ -621,6 +656,7 @@ const en: Content = {
     },
     {
       slug: "cursolab",
+      foraDoCurriculo: true,
       cover: "web",
       image: "/projects/cursolab.png",
       name: "CursoLab: online course platform",
@@ -730,10 +766,10 @@ const en: Content = {
   ],
   skills: [
     { group: "Frontend", icon: "code", desc: "Fast, responsive interfaces for B2B products in production, from layout to application state.", items: ["React", "Next.js", "TypeScript", "JavaScript", "HTML", "CSS", "Angular", "TailwindCSS"] },
-    { group: "Backend & APIs", icon: "server", desc: "REST APIs, webhooks and relational databases, with business rules and access control on the server.", items: ["Node.js", "Python", "REST APIs", "Webhooks", "Supabase", "PostgreSQL", "SQL"] },
+    { group: "Backend & APIs", icon: "server", desc: "REST APIs, webhooks and relational databases, with business rules and access control on the server.", items: ["Node.js", "Python", "FastAPI", "REST APIs", "Webhooks", "Supabase", "PostgreSQL", "SQL"] },
     { group: "Data", icon: "database", desc: "Large-scale migrations and ETL with integrity checks from start to finish.", items: ["Large-scale migration", "ETL with n8n", "PostgreSQL", "Apache Beam", "WooCommerce API"] },
     { group: "Tooling & Process", icon: "git", desc: "Collaborative version control, containers, continuous deployment and Scrum sprints in the team's daily work.", items: ["Git", "GitHub", "Docker", "Vercel", "Google Cloud (GCP)", "Scrum", "Agile"] },
-    { group: "Automation & AI", icon: "bot", desc: "n8n workflows and AI agents that sell, support customers and connect systems with no manual work.", items: ["n8n", "Conversational AI agents", "LLMs in business workflows", "WhatsApp Business API"] },
+    { group: "Automation & AI", icon: "bot", desc: "n8n workflows and AI agents that sell, support customers and connect systems with no manual work.", items: ["n8n", "Conversational AI agents", "LLMs in business workflows", "RAG with pgvector", "Claude API", "WhatsApp Business API"] },
     { group: "Web automation", icon: "globe", desc: "Scripts that browse, extract and fill in web pages reliably.", items: ["Python", "Selenium", "Playwright", "requests"] },
     { group: "Infra & Support", icon: "support", desc: "Remote user support and setup of machines and environments.", items: ["AnyDesk", "TeamViewer", "Virtual machines", "Active Directory (basics)"] },
   ],

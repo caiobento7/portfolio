@@ -336,8 +336,57 @@ function FilaMockup({ lang }: { lang: Locale }) {
   );
 }
 
+const docsText = {
+  pt: {
+    question: "Quanto é o auxílio home office?",
+    answer: "R$ 150,00 por mês, pago na folha de pagamento",
+    source: "Manual · pág. 3",
+    quote: "Quem está no modelo híbrido recebe um auxílio home office de R$ 150,00 por mês.",
+  },
+  en: {
+    question: "How much is the home office allowance?",
+    answer: "R$ 150.00 a month, paid with your salary",
+    source: "Handbook · p. 3",
+    quote: "Hybrid employees get a home office allowance of R$ 150.00 a month.",
+  },
+};
+
+/** Tela ilustrativa do assistente: resposta com citação e o trecho da página destacado. */
+function DocsMockup({ lang }: { lang: Locale }) {
+  const m = docsText[lang];
+  // Mesmas cores da tela de verdade (fundo cinza-claro, índigo e marca-texto amarelo).
+  return (
+    <div className="relative flex h-full w-full items-center justify-center gap-2.5 overflow-hidden bg-gradient-to-br from-[#e0e7ff] via-[#f3f4f7] to-[#c7d2fe] px-4 text-left">
+      <div className="w-[80%] max-w-[230px] space-y-1.5 sm:w-[54%]">
+        <p className="ml-auto w-fit max-w-full rounded-lg rounded-br-sm bg-[#111827] px-2.5 py-1.5 text-[9px] font-medium text-white shadow-lg shadow-black/20">
+          {m.question}
+        </p>
+        <div className="rounded-lg rounded-bl-sm bg-white p-2.5 shadow-xl shadow-[#3730a3]/15">
+          <p className="text-[9.5px] leading-snug text-[#111827]">
+            {m.answer}{" "}
+            <span className="rounded bg-[#3730a3] px-1 text-[8px] font-bold text-white">1</span>
+          </p>
+          <p className="mt-1.5 font-mono text-[7.5px] text-[#6b7280]">Textual #1 · Vetorial #1</p>
+        </div>
+      </div>
+      <div className="hidden w-[38%] max-w-[150px] rounded-lg bg-white p-2.5 shadow-2xl shadow-[#3730a3]/20 sm:block">
+        <p className="truncate font-mono text-[7.5px] font-semibold text-[#3730a3]">{m.source}</p>
+        <div className="mt-1.5 space-y-1">
+          <span className="block h-1 w-full rounded bg-[#e5e7eb]" />
+          <span className="block h-1 w-4/5 rounded bg-[#e5e7eb]" />
+        </div>
+        <p className="mt-1.5 text-[8px] leading-snug text-[#111827]">
+          <mark className="rounded-sm bg-[#fde68a] px-0.5 text-[#111827]">{m.quote}</mark>
+        </p>
+        <span className="mt-1.5 block h-1 w-3/5 rounded bg-[#e5e7eb]" />
+      </div>
+    </div>
+  );
+}
+
 /** Capa desenhada para projetos sem print público (código de empresa ou projeto em andamento). */
 export function ProjectCover({ project, lang }: { project: Project; lang: Locale }) {
+  if (project.cover === "docs") return <DocsMockup lang={lang} />;
   if (project.cover === "booking") return <BookingMockup lang={lang} />;
   if (project.cover === "pix") return <PixMockup lang={lang} />;
   if (project.cover === "cli") return <CliMockup lang={lang} />;

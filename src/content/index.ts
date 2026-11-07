@@ -30,7 +30,7 @@ export type Project = {
   bullets: string[];
   impact: string;
   stack: string[];
-  cover: "whatsapp" | "web" | "ticket" | "database" | "booking" | "pix" | "cli" | "fila" | "docs";
+  cover: "whatsapp" | "web" | "ticket" | "database" | "booking" | "pix" | "cli" | "fila" | "docs" | "curso";
   /** "building": projeto em desenvolvimento. Mostra o selo e o escopo e fica fora do currículo. */
   status?: "building";
   /** Fica só no portfólio, fora do currículo (já citado na experiência, ou menor), para o PDF caber em 2 páginas. */
@@ -242,8 +242,7 @@ const pt: Content = {
     {
       slug: "liviu",
       foraDoCurriculo: true,
-      cover: "web",
-      image: "/projects/liviu.jpg",
+      cover: "curso",
       name: "Adapt Liviu: plataforma de educação corporativa",
       context: "Adapt Edtech · Full stack, junto com o time",
       summary:
@@ -622,8 +621,7 @@ const en: Content = {
     {
       slug: "liviu",
       foraDoCurriculo: true,
-      cover: "web",
-      image: "/projects/liviu.jpg",
+      cover: "curso",
       name: "Adapt Liviu: corporate learning platform",
       context: "Adapt Edtech · Full stack, with the team",
       summary:

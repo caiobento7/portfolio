@@ -336,6 +336,56 @@ function FilaMockup({ lang }: { lang: Locale }) {
   );
 }
 
+const cursoText = {
+  pt: { course: "Onboarding de vendas", blocks: ["Vídeo", "Texto", "Quiz"], path: "Rota de aprendizagem", steps: ["Boas-vindas", "Produto", "Negociação"], scorm: "SCORM" },
+  en: { course: "Sales onboarding", blocks: ["Video", "Text", "Quiz"], path: "Learning path", steps: ["Welcome", "Product", "Negotiation"], scorm: "SCORM" },
+};
+
+/** Capa ilustrativa de uma plataforma de cursos: editor com blocos e rota de aprendizagem (sem marca nem tela real). */
+function CursoMockup({ lang }: { lang: Locale }) {
+  const m = cursoText[lang];
+  return (
+    <div className="relative flex h-full w-full items-center justify-center gap-2.5 overflow-hidden bg-gradient-to-br from-[#3b1f63] via-[#5b2d8f] to-[#7c4dbd] px-4 text-left">
+      <div className="w-[80%] max-w-[230px] rounded-lg bg-white p-2.5 shadow-2xl shadow-black/30 sm:w-[56%]">
+        <div className="flex items-center justify-between">
+          <p className="truncate text-[9.5px] font-bold text-[#1f1235]">{m.course}</p>
+          <span className="rounded bg-[#a3d977] px-1.5 py-0.5 text-[7.5px] font-bold text-[#1f1235]">{m.scorm}</span>
+        </div>
+        <div className="mt-2 grid grid-cols-[1fr_2.2fr] gap-1.5">
+          <div className="space-y-1">
+            {m.blocks.map((b) => (
+              <span key={b} className="block rounded border border-[#e9e2f5] bg-[#f6f2fc] px-1.5 py-1 text-[8px] font-medium text-[#5b2d8f]">
+                {b}
+              </span>
+            ))}
+          </div>
+          <div className="space-y-1 rounded border border-dashed border-[#c9b8e6] p-1.5">
+            <span className="block h-7 rounded bg-[#ede5f8]" />
+            <span className="block h-1 w-full rounded bg-[#e5e7eb]" />
+            <span className="block h-1 w-3/4 rounded bg-[#e5e7eb]" />
+            <span className="block rounded bg-[#5b2d8f] py-0.5 text-center text-[7.5px] font-bold text-white">Quiz</span>
+          </div>
+        </div>
+      </div>
+      <div className="hidden w-[36%] max-w-[140px] rounded-lg bg-white/95 p-2.5 shadow-2xl shadow-black/30 sm:block">
+        <p className="text-[8px] font-semibold uppercase tracking-wider text-[#5b2d8f]">{m.path}</p>
+        <ol className="mt-1.5 space-y-1.5">
+          {m.steps.map((st, i) => (
+            <li key={st} className="flex items-center gap-1.5 text-[8.5px] text-[#1f1235]">
+              <span
+                className={`grid size-3.5 shrink-0 place-items-center rounded-full text-[7px] font-bold ${i === 0 ? "bg-[#a3d977] text-[#1f1235]" : i === 1 ? "bg-[#5b2d8f] text-white" : "border border-[#c9b8e6] text-[#5b2d8f]"}`}
+              >
+                {i === 0 ? "✓" : i + 1}
+              </span>
+              {st}
+            </li>
+          ))}
+        </ol>
+      </div>
+    </div>
+  );
+}
+
 const docsText = {
   pt: {
     question: "Quanto é o auxílio home office?",
@@ -386,6 +436,7 @@ function DocsMockup({ lang }: { lang: Locale }) {
 
 /** Capa desenhada para projetos sem print público (código de empresa ou projeto em andamento). */
 export function ProjectCover({ project, lang }: { project: Project; lang: Locale }) {
+  if (project.cover === "curso") return <CursoMockup lang={lang} />;
   if (project.cover === "docs") return <DocsMockup lang={lang} />;
   if (project.cover === "booking") return <BookingMockup lang={lang} />;
   if (project.cover === "pix") return <PixMockup lang={lang} />;

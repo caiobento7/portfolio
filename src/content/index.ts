@@ -422,7 +422,7 @@ const pt: Content = {
     {
       company: "Pixtrade.IO",
       role: "Software Developer Trainee",
-      period: "Mai 2024 – Set 2024",
+      period: "Mai 2024 – Jun 2025",
       mode: "Remoto",
       bullets: [
         "Bot de atendimento para triagem e qualificação de clientes antes do suporte humano, reduzindo o tempo médio de atendimento de 20 para menos de 5 minutos",
@@ -765,7 +765,7 @@ const en: Content = {
     {
       company: "Pixtrade.IO",
       role: "Software Developer Trainee",
-      period: "May 2024 – Sep 2024",
+      period: "May 2024 – Jun 2025",
       mode: "Remote",
       bullets: [
         "Built a support bot that triages and qualifies customers before human support, cutting average handling time from 20 to under 5 minutes",

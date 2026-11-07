@@ -30,7 +30,7 @@ export type Project = {
   bullets: string[];
   impact: string;
   stack: string[];
-  cover: "whatsapp" | "web" | "ticket" | "database" | "booking" | "pix" | "cli" | "fila" | "docs" | "curso";
+  cover: "whatsapp" | "web" | "ticket" | "database" | "booking" | "pix" | "cli" | "fila" | "docs" | "curso" | "matricula";
   /** "building": projeto em desenvolvimento. Mostra o selo e o escopo e fica fora do currículo. */
   status?: "building";
   /** Fica só no portfólio, fora do currículo (já citado na experiência, ou menor), para o PDF caber em 2 páginas. */
@@ -344,8 +344,7 @@ const pt: Content = {
     {
       slug: "famath",
       foraDoCurriculo: true,
-      cover: "web",
-      image: "/projects/famath.jpg",
+      cover: "matricula",
       name: "FAMATH: site e plataforma de matrícula",
       context: "Faculdade Maria Thereza · Nexly Group",
       summary:
@@ -723,8 +722,7 @@ const en: Content = {
     {
       slug: "famath",
       foraDoCurriculo: true,
-      cover: "web",
-      image: "/projects/famath.jpg",
+      cover: "matricula",
       name: "FAMATH: college website and enrollment platform",
       context: "Faculdade Maria Thereza · Nexly Group",
       summary:

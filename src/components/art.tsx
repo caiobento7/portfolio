@@ -386,6 +386,60 @@ function CursoMockup({ lang }: { lang: Locale }) {
   );
 }
 
+const matriculaText = {
+  pt: {
+    title: "Matrícula online",
+    course: "Graduação · Administração",
+    fields: ["Dados pessoais", "Documentos", "Contrato"],
+    status: "Acompanhar matrícula",
+    steps: ["Inscrição recebida", "Documentos aprovados", "Matrícula confirmada"],
+  },
+  en: {
+    title: "Online enrollment",
+    course: "Undergraduate · Business",
+    fields: ["Personal details", "Documents", "Contract"],
+    status: "Track enrollment",
+    steps: ["Application received", "Documents approved", "Enrollment confirmed"],
+  },
+};
+
+/** Capa ilustrativa do fluxo de matrícula: formulário em etapas e acompanhamento (sem marca nem tela real). */
+function MatriculaMockup({ lang }: { lang: Locale }) {
+  const m = matriculaText[lang];
+  return (
+    <div className="relative flex h-full w-full items-center justify-center gap-2.5 overflow-hidden bg-gradient-to-br from-[#0f2a4a] via-[#16406e] to-[#1f5d99] px-4 text-left">
+      <div className="w-[80%] max-w-[220px] rounded-lg bg-white p-2.5 shadow-2xl shadow-black/30 sm:w-[54%]">
+        <p className="text-[9.5px] font-bold text-[#0f2a4a]">{m.title}</p>
+        <p className="text-[8px] text-[#64748b]">{m.course}</p>
+        <div className="mt-2 space-y-1">
+          {m.fields.map((f, i) => (
+            <div key={f} className="flex items-center gap-1.5 rounded border border-[#e2e8f0] px-1.5 py-1">
+              <span
+                className={`grid size-3.5 shrink-0 place-items-center rounded-full text-[7px] font-bold ${i < 2 ? "bg-[#16406e] text-white" : "border border-[#cbd5e1] text-[#64748b]"}`}
+              >
+                {i < 2 ? "✓" : i + 1}
+              </span>
+              <span className="text-[8.5px] text-[#334155]">{f}</span>
+            </div>
+          ))}
+        </div>
+        <p className="mt-2 rounded bg-[#f2b705] py-1 text-center text-[8.5px] font-bold text-[#0f2a4a]">{m.fields[2]} →</p>
+      </div>
+      <div className="hidden w-[38%] max-w-[150px] rounded-lg bg-white/95 p-2.5 shadow-2xl shadow-black/30 sm:block">
+        <p className="text-[8px] font-semibold uppercase tracking-wider text-[#16406e]">{m.status}</p>
+        <ol className="mt-1.5 space-y-1.5">
+          {m.steps.map((st, i) => (
+            <li key={st} className="flex items-start gap-1.5 text-[8px] leading-tight text-[#0f2a4a]">
+              <span className={`mt-0.5 size-2 shrink-0 rounded-full ${i < 2 ? "bg-[#22c55e]" : "border border-[#cbd5e1]"}`} />
+              {st}
+            </li>
+          ))}
+        </ol>
+      </div>
+    </div>
+  );
+}
+
 const docsText = {
   pt: {
     question: "Quanto é o auxílio home office?",
@@ -437,6 +491,7 @@ function DocsMockup({ lang }: { lang: Locale }) {
 /** Capa desenhada para projetos sem print público (código de empresa ou projeto em andamento). */
 export function ProjectCover({ project, lang }: { project: Project; lang: Locale }) {
   if (project.cover === "curso") return <CursoMockup lang={lang} />;
+  if (project.cover === "matricula") return <MatriculaMockup lang={lang} />;
   if (project.cover === "docs") return <DocsMockup lang={lang} />;
   if (project.cover === "booking") return <BookingMockup lang={lang} />;
   if (project.cover === "pix") return <PixMockup lang={lang} />;

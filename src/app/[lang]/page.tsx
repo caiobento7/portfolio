@@ -145,7 +145,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
               >
                 <div className="relative aspect-[4/3.4] w-full">
                   <Image
-                    src="/caio.png"
+                    src="/caio.jpg"
                     alt={contact.name}
                     fill
                     sizes="(min-width: 1024px) 400px, 100vw"

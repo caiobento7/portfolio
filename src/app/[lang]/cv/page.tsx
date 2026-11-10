@@ -38,6 +38,8 @@ export default async function CvPage({ params }: PageProps<"/[lang]/cv">) {
           <p className="mt-3 flex flex-wrap gap-x-3 gap-y-1 text-sm text-muted">
             <span>{t.hero.location}</span>
             <Sep />
+            <a href={contact.phoneHref} className="hover:text-fg">{contact.phone}</a>
+            <Sep />
             <a href={`mailto:${contact.email}`} className="hover:text-fg">{contact.email}</a>
             <Sep />
             <a href={contact.linkedin} className="hover:text-fg">{contact.linkedinLabel}</a>

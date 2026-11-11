@@ -48,6 +48,8 @@ export type Job = {
   mode: string;
   current?: boolean;
   bullets: string[];
+  /** Tecnologias usadas nessa experiência; aparece no currículo abaixo dos tópicos. */
+  stack?: string[];
 };
 
 type Content = {
@@ -434,11 +436,11 @@ const pt: Content = {
       period: "Jul 2026 – Nov 2026",
       mode: "Remoto",
       bullets: [
-        "Desenvolvimento do Adapt Liviu, ecossistema de tecnologia educacional para criação, gestão e análise de conteúdo, usado por instituições de ensino e áreas de T&D corporativo, e do Liviu Hub, plataforma de educação corporativa da empresa",
-        "Construção, junto com o time, das funcionalidades centrais da plataforma: cadastro de empresas e alunos, editor visual de cursos no estilo Canva, rotas de aprendizagem, importação e exportação de pacotes SCORM e recursos de IA para revisão de textos e geração de imagens",
-        "Interfaces web com React, Next.js e TypeScript, integradas a APIs e serviços backend",
-        "Implementação de funcionalidades e melhorias em sistemas em produção, em time ágil com Scrum, Git e versionamento colaborativo",
+        "Desenvolvi o Adapt Liviu, ecossistema de tecnologia educacional para criação, gestão e análise de conteúdo, usado por instituições de ensino e áreas de T&D corporativo, e o Liviu Hub, plataforma de educação corporativa da empresa",
+        "Construí, junto com o time, funcionalidades centrais da plataforma: cadastro de empresas e alunos, editor visual de cursos no estilo Canva, rotas de aprendizagem, importação e exportação de pacotes SCORM e recursos de IA para revisão de textos e geração de imagens",
+        "Desenvolvi interfaces web com React, Next.js e TypeScript, integradas a APIs e serviços backend, em time ágil com Scrum, Git e versionamento colaborativo",
       ],
+      stack: ["React", "Next.js", "TypeScript", "APIs REST", "Scrum", "Git"],
     },
     {
       company: "Nexly Group Solutions",
@@ -446,13 +448,13 @@ const pt: Content = {
       period: "Jul 2025 – Ago 2026",
       mode: "Remoto",
       bullets: [
-        "Responsável por todas as interfaces frontend da empresa, com aplicações web em React, Next.js e TypeScript para produtos B2B em produção, além do site e da plataforma de matrícula online da Faculdade Maria Thereza (FAMATH)",
-        "Idealizou e desenvolveu a Silvinha, agente de IA da Silva Nutrition e primeira IA de vendas e suporte da empresa, operando via WhatsApp com integrações WooCommerce via API REST e Webhooks",
-        "Projetou e implementou mais de 10 automações críticas com n8n, incluindo a migração de mais de 100.000 registros do WooCommerce para o Supabase num único fluxo otimizado",
-        "Criou um sistema de alertas para monitorar desconexões de ferramentas, prevenindo falhas que comprometeriam a integridade do banco em produção",
-        "Dashboards e funcionalidades para aplicações web internas, integrando frontend a APIs e serviços backend",
-        "Time ágil com Scrum em sprints semanais, com Git e versionamento colaborativo",
+        "Fui responsável por todas as interfaces frontend da empresa, com aplicações web em React, Next.js e TypeScript para produtos B2B em produção, além do site e da plataforma de matrícula online da Faculdade Maria Thereza (FAMATH)",
+        "Idealizei e desenvolvi a Silvinha, agente de IA da Silva Nutrition e primeira IA de vendas e suporte da empresa, operando via WhatsApp com integrações WooCommerce via API REST e webhooks",
+        "Projetei e implementei mais de 10 automações críticas com n8n, incluindo a migração de mais de 100.000 registros do WooCommerce para o Supabase num único fluxo otimizado",
+        "Criei um sistema de alertas para monitorar desconexões de ferramentas, prevenindo falhas que comprometeriam a integridade do banco em produção",
+        "Desenvolvi dashboards e funcionalidades para aplicações web internas, em time ágil com Scrum e sprints semanais",
       ],
+      stack: ["React", "Next.js", "TypeScript", "n8n", "WooCommerce API", "APIs REST", "Webhooks", "Supabase", "Git", "Scrum"],
     },
     {
       company: "Pixtrade.IO",
@@ -460,12 +462,11 @@ const pt: Content = {
       period: "Mai 2024 – Jun 2025",
       mode: "Remoto",
       bullets: [
-        "Bot de atendimento para triagem e qualificação de clientes antes do suporte humano, reduzindo o tempo médio de atendimento de 20 para menos de 5 minutos",
-        "Scripts e automações em Python e SQL para otimizar processos internos",
-        "Criação e manutenção de integrações entre sistemas e APIs para processamento de dados",
-        "Colaboração em soluções de análise e manipulação de dados da plataforma",
-        "Suporte remoto a usuários via AnyDesk e TeamViewer",
+        "Desenvolvi um bot de atendimento para triagem e qualificação de clientes antes do suporte humano, reduzindo o tempo médio de atendimento de 20 para menos de 5 minutos",
+        "Criei scripts e automações em Python e SQL para otimizar processos internos e mantive integrações entre sistemas e APIs para processamento de dados",
+        "Colaborei em soluções de análise e manipulação de dados da plataforma e prestei suporte remoto a usuários via AnyDesk e TeamViewer",
       ],
+      stack: ["Python", "SQL", "APIs", "AnyDesk", "TeamViewer"],
     },
     {
       company: "Upwork",
@@ -473,16 +474,16 @@ const pt: Content = {
       period: "Dez 2023 – Abr 2024",
       mode: "Remoto",
       bullets: [
-        "Desenvolvimento de pequenas aplicações web para clientes, de ponta a ponta: levantamento de requisitos, definição de escopo, desenvolvimento e entrega final",
-        "Responsável pelas decisões técnicas e pela comunicação direta com o cliente ao longo de todo o projeto",
+        "Desenvolvi pequenas aplicações web para clientes de ponta a ponta: levantamento de requisitos, definição de escopo, desenvolvimento e entrega final, com comunicação direta com o cliente e responsabilidade pelas decisões técnicas",
       ],
     },
   ],
   skills: [
     { group: "Frontend", icon: "code", desc: "Interfaces responsivas e rápidas para produtos B2B em produção, do layout ao estado da aplicação.", items: ["React", "Next.js", "TypeScript", "JavaScript", "HTML", "CSS", "Angular", "TailwindCSS"] },
-    { group: "Backend & APIs", icon: "server", desc: "APIs REST, webhooks e bancos relacionais, com regra de negócio e controle de acesso no servidor.", items: ["Node.js", "Python", "FastAPI", "REST APIs", "Webhooks", "Supabase", "PostgreSQL", "SQL"] },
+    { group: "Backend & APIs", icon: "server", desc: "APIs REST, webhooks e bancos relacionais, com regra de negócio e controle de acesso no servidor.", items: ["Java", "Spring Boot", "Node.js", "Python", "FastAPI", "REST APIs", "Webhooks", "RabbitMQ", "Supabase", "PostgreSQL", "SQL"] },
+    { group: "Testes", icon: "check", desc: "Testes unitários, de integração e de ponta a ponta rodando no CI, com banco e fila de verdade.", items: ["JUnit 5", "Testcontainers", "pytest", "Vitest", "Playwright"] },
     { group: "Dados", icon: "database", desc: "Migrações em larga escala e ETL com validação de integridade do começo ao fim.", items: ["Migração em larga escala", "ETL com n8n", "PostgreSQL", "Apache Beam", "WooCommerce API"] },
-    { group: "Ferramentas & Processo", icon: "git", desc: "Versionamento colaborativo, containers, deploy contínuo e sprints com Scrum no dia a dia do time.", items: ["Git", "GitHub", "Docker", "Vercel", "Google Cloud (GCP)", "Scrum", "Metodologias ágeis"] },
+    { group: "Ferramentas & Processo", icon: "git", desc: "Versionamento colaborativo, containers, deploy contínuo e sprints com Scrum no dia a dia do time.", items: ["Git", "GitHub", "GitHub Actions (CI)", "Docker", "Vercel", "Google Cloud (GCP)", "Scrum", "Metodologias ágeis"] },
     { group: "Automação & IA", icon: "bot", desc: "Fluxos em n8n e agentes de IA que vendem, atendem e conectam sistemas sem trabalho manual.", items: ["n8n", "Agentes de IA conversacionais", "LLMs em fluxos de negócio", "RAG com pgvector", "API do Claude", "WhatsApp Business API"] },
     { group: "Automação web", icon: "globe", desc: "Scripts que navegam, extraem e preenchem páginas web de forma confiável.", items: ["Python", "Selenium", "Playwright", "requests"] },
     { group: "Infra & Suporte", icon: "support", desc: "Suporte remoto a usuários e configuração de máquinas e ambientes.", items: ["AnyDesk", "TeamViewer", "Máquinas virtuais", "Active Directory (noções)"] },
@@ -495,10 +496,10 @@ const pt: Content = {
   languages: ["Português: nativo", "Inglês: intermediário (leitura técnica fluente)"],
   cv: {
     title: "Currículo | Caio Bento",
-    headline: "Desenvolvedor Full Stack | React, Next.js, TypeScript, Node.js, PostgreSQL",
-    summaryTitle: "Resumo de qualificações",
+    headline: "Desenvolvedor Full Stack | React, Next.js, TypeScript, Node.js | Java, Spring Boot | Python",
+    summaryTitle: "Resumo profissional",
     summary:
-      "Desenvolvedor Full Stack com experiência em aplicações web de ponta a ponta com React, Next.js, TypeScript e Node.js, sempre em sistemas em produção. Na Adapt Edtech, desenvolveu interfaces e funcionalidades do Adapt Liviu e do Liviu Hub, plataformas de educação usadas por instituições de ensino e áreas de T&D corporativo. Na Nexly Group, foi responsável por todas as interfaces frontend da empresa em produtos B2B, além de integrações via APIs REST e webhooks, como a primeira IA de vendas e suporte da Silva Nutrition e a migração de mais de 100 mil registros para o Supabase. Experiência com integração de frontend a APIs, bancos relacionais (PostgreSQL e Supabase), dashboards e versionamento colaborativo com Git.",
+      "Sou desenvolvedor full stack e trabalho com aplicações web em produção usando React, Next.js, TypeScript, Node.js, Java (Spring Boot), Python e PostgreSQL. Na Adapt Edtech, desenvolvi funcionalidades do Adapt Liviu e do Liviu Hub, plataformas de educação usadas por instituições de ensino e áreas de T&D corporativo. Na Nexly Group, fui responsável por todo o front-end dos produtos B2B e por integrações via APIs REST e webhooks, como a primeira IA de vendas e suporte da Silva Nutrition e a migração de mais de 100 mil registros para o Supabase. Em projetos pessoais de código aberto, aplico testes automatizados, filas, idempotência e CI.",
     skillsTitle: "Competências técnicas",
     experienceTitle: "Experiência profissional",
     educationTitle: "Formação acadêmica",
@@ -817,6 +818,7 @@ const en: Content = {
         "Web interfaces with React, Next.js and TypeScript, integrated with APIs and backend services",
         "Shipped features and improvements to production systems in an agile Scrum team, using Git and a collaborative workflow",
       ],
+      stack: ["React", "Next.js", "TypeScript", "REST APIs", "Scrum", "Git"],
     },
     {
       company: "Nexly Group Solutions",
@@ -831,6 +833,7 @@ const en: Content = {
         "Dashboards and features for internal web apps, wiring the frontend to APIs and backend services",
         "Agile Scrum team with weekly sprints, Git and a collaborative workflow",
       ],
+      stack: ["React", "Next.js", "TypeScript", "n8n", "WooCommerce API", "REST APIs", "Webhooks", "Supabase", "Git", "Scrum"],
     },
     {
       company: "Pixtrade.IO",
@@ -844,6 +847,7 @@ const en: Content = {
         "Collaborated on data analysis and data handling solutions for the platform",
         "Remote user support via AnyDesk and TeamViewer",
       ],
+      stack: ["Python", "SQL", "APIs", "AnyDesk", "TeamViewer"],
     },
     {
       company: "Upwork",
@@ -858,9 +862,10 @@ const en: Content = {
   ],
   skills: [
     { group: "Frontend", icon: "code", desc: "Fast, responsive interfaces for B2B products in production, from layout to application state.", items: ["React", "Next.js", "TypeScript", "JavaScript", "HTML", "CSS", "Angular", "TailwindCSS"] },
-    { group: "Backend & APIs", icon: "server", desc: "REST APIs, webhooks and relational databases, with business rules and access control on the server.", items: ["Node.js", "Python", "FastAPI", "REST APIs", "Webhooks", "Supabase", "PostgreSQL", "SQL"] },
+    { group: "Backend & APIs", icon: "server", desc: "REST APIs, webhooks and relational databases, with business rules and access control on the server.", items: ["Java", "Spring Boot", "Node.js", "Python", "FastAPI", "REST APIs", "Webhooks", "RabbitMQ", "Supabase", "PostgreSQL", "SQL"] },
+    { group: "Testing", icon: "check", desc: "Unit, integration and end-to-end tests running in CI, against a real database and queue.", items: ["JUnit 5", "Testcontainers", "pytest", "Vitest", "Playwright"] },
     { group: "Data", icon: "database", desc: "Large-scale migrations and ETL with integrity checks from start to finish.", items: ["Large-scale migration", "ETL with n8n", "PostgreSQL", "Apache Beam", "WooCommerce API"] },
-    { group: "Tooling & Process", icon: "git", desc: "Collaborative version control, containers, continuous deployment and Scrum sprints in the team's daily work.", items: ["Git", "GitHub", "Docker", "Vercel", "Google Cloud (GCP)", "Scrum", "Agile"] },
+    { group: "Tooling & Process", icon: "git", desc: "Collaborative version control, containers, continuous deployment and Scrum sprints in the team's daily work.", items: ["Git", "GitHub", "GitHub Actions (CI)", "Docker", "Vercel", "Google Cloud (GCP)", "Scrum", "Agile"] },
     { group: "Automation & AI", icon: "bot", desc: "n8n workflows and AI agents that sell, support customers and connect systems with no manual work.", items: ["n8n", "Conversational AI agents", "LLMs in business workflows", "RAG with pgvector", "Claude API", "WhatsApp Business API"] },
     { group: "Web automation", icon: "globe", desc: "Scripts that browse, extract and fill in web pages reliably.", items: ["Python", "Selenium", "Playwright", "requests"] },
     { group: "Infra & Support", icon: "support", desc: "Remote user support and setup of machines and environments.", items: ["AnyDesk", "TeamViewer", "Virtual machines", "Active Directory (basics)"] },
@@ -873,7 +878,7 @@ const en: Content = {
   languages: ["Portuguese: native", "English: intermediate (fluent technical reading)"],
   cv: {
     title: "Résumé | Caio Bento",
-    headline: "Full Stack Developer | React, Next.js, TypeScript, Node.js, PostgreSQL",
+    headline: "Full Stack Developer | React, Next.js, TypeScript, Node.js | Java, Spring Boot | Python",
     summaryTitle: "Summary",
     summary:
       "Full Stack Developer experienced in building web applications end to end with React, Next.js, TypeScript and Node.js, always on systems running in production. At Adapt Edtech, built interfaces and features for Adapt Liviu and Liviu Hub, education platforms used by schools and corporate L&D teams. At Nexly Group, owned every frontend interface in the company's B2B products and built integrations through REST APIs and webhooks, such as Silva Nutrition's first sales and support AI and the migration of 100k+ records to Supabase. Experienced in wiring frontends to APIs, relational databases (PostgreSQL and Supabase), dashboards and collaborative Git workflows.",

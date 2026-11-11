@@ -76,6 +76,7 @@ const skill: Record<string, (p: P) => React.ReactElement> = {
   git: (p) => <S {...p}><circle cx="6" cy="6" r="2.5" /><circle cx="6" cy="18" r="2.5" /><circle cx="18" cy="9" r="2.5" /><path d="M6 8.5v7M18 11.5c0 3-3 3.5-6 4.5-2 .7-4 1-6 2" /></S>,
   globe: (p) => <S {...p}><circle cx="12" cy="12" r="9.5" /><path d="M2.5 12h19M12 2.5c2.5 2.6 3.8 5.8 3.8 9.5s-1.3 6.9-3.8 9.5c-2.5-2.6-3.8-5.8-3.8-9.5S9.5 5.1 12 2.5Z" /></S>,
   support: (p) => <S {...p}><path d="M4 14v-2a8 8 0 0 1 16 0v2" /><rect x="2.5" y="13" width="4" height="6" rx="1.5" /><rect x="17.5" y="13" width="4" height="6" rx="1.5" /><path d="M19.5 19c0 1.5-2 2.5-5 2.5" /></S>,
+  check: (p) => <S {...p}><rect x="3" y="3" width="18" height="18" rx="4" /><path d="m8 12.5 3 3 5-6" /></S>,
   ticket: (p) => <S {...p}><path d="M3 8a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2v-2a2 2 0 0 0 0-4Z" /><path d="M9 6v12" strokeDasharray="2 2" /></S>,
   whatsapp: ({ className }) => <WhatsappIcon className={className} />,
   bolt: (p) => <S {...p}><path d="M13 2 4 14h7l-1 8 9-12h-7Z" /></S>,

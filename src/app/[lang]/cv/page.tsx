@@ -81,6 +81,11 @@ export default async function CvPage({ params }: PageProps<"/[lang]/cv">) {
                     <li key={b}>{b}</li>
                   ))}
                 </ul>
+                {j.stack && (
+                  <p className="mt-1 text-xs italic text-subtle">
+                    {t.cv.technologies}: {j.stack.join(", ")}
+                  </p>
+                )}
               </div>
             ))}
           </div>
